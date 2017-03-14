@@ -186,6 +186,7 @@ elementFormDefault="qualified">
 
 
 <!-- definition of simple elements -->
+<xs:element name="index" type="xs:int"/>
 <xs:element name="data_provider" type="xs:string"/>
 <xs:element name="satellite" type="xs:string"/>
 <xs:element name="instrument" type="xs:string"/>
@@ -407,8 +408,8 @@ elementFormDefault="qualified">
       <xs:element ref="long_name"/>
       <xs:element ref="file_name"/>
       <xs:element ref="pixel_size"/>
-      <xs:element ref="resample_method" minOccurs="0"/>
-      <xs:element ref="data_units" minOccurs="0"/>
+      <xs:element ref="resample_method"/>
+      <xs:element ref="data_units"/>
       <xs:element ref="valid_range" minOccurs="0"/>
       <xs:element ref="bitmap_description" minOccurs="0"/>
       <xs:element ref="class_values" minOccurs="0"/>
@@ -416,7 +417,7 @@ elementFormDefault="qualified">
       <xs:element ref="production_date"/>
     </xs:sequence>
     <xs:attribute name="product" type="xs:string" use="required"/>
-    <xs:attribute name="source" type="xs:string" use="optional"/>
+    <xs:attribute name="source" type="xs:string" use="required"/>
     <xs:attribute name="name" type="xs:string" use="required"/>
     <xs:attribute name="category" type="categoryType" use="required"/>
     <xs:attribute name="data_type" type="dataType" use="required"/>
@@ -432,48 +433,49 @@ elementFormDefault="qualified">
 
 <!-- Start of main XML file -->
 <xs:element name="ard_metadata">
+
   <!-- Tile metadata container -->
   <xs:element name="tile_metadata">
     <xs:complexType>
 
-        <!-- Tile global metadata container -->
-        <xs:element name="global_metadata">
-          <xs:complexType>
-            <xs:sequence>
-              <xs:element ref="data_provider"/>
-              <xs:element ref="acquisition_date"/>
-              <xs:element ref="tile_id"/>
-              <xs:element ref="tile_production_date"/>
-              <xs:element ref="bounding_coordinates"/>
-              <xs:element ref="projection_information"/>
-              <xs:element ref="orientation_angle"/>
-              <xs:element ref="tile_grid"/>
-              <xs:element ref="scene_count"/>
-              <xs:element ref="cloud_cover"/>
-              <xs:element ref="cloud_shadow"/>
-              <xs:element ref="snow_ice"/>
-              <xs:element ref="fill"/>
-            </xs:sequence>
-          </xs:complexType>
-        </xs:element>
+      <!-- Tile global metadata container -->
+      <xs:element name="global_metadata">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element ref="data_provider"/>
+            <xs:element ref="acquisition_date"/>
+            <xs:element ref="tile_id"/>
+            <xs:element ref="tile_production_date"/>
+            <xs:element ref="bounding_coordinates"/>
+            <xs:element ref="projection_information"/>
+            <xs:element ref="orientation_angle"/>
+            <xs:element ref="tile_grid"/>
+            <xs:element ref="scene_count"/>
+            <xs:element ref="cloud_cover"/>
+            <xs:element ref="cloud_shadow"/>
+            <xs:element ref="snow_ice"/>
+            <xs:element ref="fill"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
         
-        <!-- Tile bands container -->
-        <xs:element name="bands">
-          <xs:complexType>
-            <xs:sequence>
-              <xs:element ref="band" maxOccurs="unbounded"/>
-            </xs:sequence>
-          </xs:complexType>
-        </xs:element>
+      <!-- Tile bands container -->
+      <xs:element name="bands">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element ref="band" maxOccurs="unbounded"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
 
-      <xs:attribute name="version" type="xs:string" use="required"/>
     </xs:complexType>
   </xs:element>
   
-  <!-- Scene metadata container -->
-  <xs:element name="scene_metadata">
-    <xs:complexType>
-      <xs:sequence>
+  <!-- Sequence of scene metadata containers -->
+  <xs:sequence>
+    <xs:element name="scene_metadata">
+      <xs:complexType>
+        <xs:element ref="index"/>
 
         <!-- Scene global metadata container -->
         <xs:element name="global_metadata">
@@ -500,7 +502,7 @@ elementFormDefault="qualified">
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-  
+    
         <!-- Scene bands container -->
         <xs:element name="bands">
           <xs:complexType>
@@ -510,10 +512,10 @@ elementFormDefault="qualified">
           </xs:complexType>
         </xs:element>
 
-      </xs:sequence>
-      <xs:attribute name="version" type="xs:string" use="required"/>
-    </xs:complexType>
-  </xs:element>
+      </xs:complexType>
+    </xs:element>
+  </xs:sequence>
+
 </xs:element>
 
 </xs:schema> 
