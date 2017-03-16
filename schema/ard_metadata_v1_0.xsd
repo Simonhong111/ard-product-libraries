@@ -433,89 +433,95 @@ elementFormDefault="qualified">
 
 <!-- Start of main XML file -->
 <xs:element name="ard_metadata">
+  <xs:complexType>
+    <xs:sequence>
 
-  <!-- Tile metadata container -->
-  <xs:element name="tile_metadata">
-    <xs:complexType>
-
-      <!-- Tile global metadata container -->
-      <xs:element name="global_metadata">
+      <!-- Tile metadata container -->
+      <xs:element name="tile_metadata">
         <xs:complexType>
           <xs:sequence>
-            <xs:element ref="data_provider"/>
-            <xs:element ref="acquisition_date"/>
-            <xs:element ref="tile_id"/>
-            <xs:element ref="tile_production_date"/>
-            <xs:element ref="bounding_coordinates"/>
-            <xs:element ref="projection_information"/>
-            <xs:element ref="orientation_angle"/>
-            <xs:element ref="tile_grid"/>
-            <xs:element ref="scene_count"/>
-            <xs:element ref="cloud_cover"/>
-            <xs:element ref="cloud_shadow"/>
-            <xs:element ref="snow_ice"/>
-            <xs:element ref="fill"/>
-          </xs:sequence>
-        </xs:complexType>
-      </xs:element>
-        
-      <!-- Tile bands container -->
-      <xs:element name="bands">
-        <xs:complexType>
-          <xs:sequence>
-            <xs:element ref="band" maxOccurs="unbounded"/>
-          </xs:sequence>
-        </xs:complexType>
-      </xs:element>
-
-    </xs:complexType>
-  </xs:element>
-  
-  <!-- Sequence of scene metadata containers -->
-  <xs:sequence>
-    <xs:element name="scene_metadata">
-      <xs:complexType>
-        <xs:element ref="index"/>
-
-        <!-- Scene global metadata container -->
-        <xs:element name="global_metadata">
-          <xs:complexType>
-            <xs:sequence>
-              <xs:element ref="data_provider"/>
-              <xs:element ref="satellite"/>
-              <xs:element ref="instrument"/>
-              <xs:element ref="acquisition_date"/>
-              <xs:element ref="scene_center_time"/>
-              <xs:element ref="level1_production_date"/>
-              <xs:element ref="wrs"/>
-              <xs:element ref="request_id"/>
-              <xs:element ref="scene_id"/>
-              <xs:element ref="product_id"/>
-              <xs:element ref="elevation_source"/>
-              <xs:element ref="sensor_mode"/>
-              <xs:element ref="ephemeris_type"/>
-              <xs:element ref="cpf_name"/>
-              <xs:element ref="lpgs_metadata_file"/>
-              <xs:element ref="geometric_rmse_model"/>
-              <xs:element ref="geometric_rmse_model_x"/>
-              <xs:element ref="geometric_rmse_model_y"/>
-            </xs:sequence>
-          </xs:complexType>
-        </xs:element>
     
-        <!-- Scene bands container -->
-        <xs:element name="bands">
-          <xs:complexType>
-            <xs:sequence>
-              <xs:element ref="band" maxOccurs="unbounded"/>
-            </xs:sequence>
-          </xs:complexType>
-        </xs:element>
+            <!-- Tile global metadata container -->
+            <xs:element name="global_metadata">
+              <xs:complexType>
+                <xs:sequence>
+                  <xs:element ref="data_provider"/>
+                  <xs:element ref="acquisition_date"/>
+                  <xs:element ref="tile_id"/>
+                  <xs:element ref="tile_production_date"/>
+                  <xs:element ref="bounding_coordinates"/>
+                  <xs:element ref="projection_information"/>
+                  <xs:element ref="orientation_angle"/>
+                  <xs:element ref="tile_grid"/>
+                  <xs:element ref="scene_count"/>
+                  <xs:element ref="cloud_cover"/>
+                  <xs:element ref="cloud_shadow"/>
+                  <xs:element ref="snow_ice"/>
+                  <xs:element ref="fill"/>
+                </xs:sequence>
+              </xs:complexType>
+            </xs:element>
+              
+            <!-- Tile bands container -->
+            <xs:element name="bands">
+              <xs:complexType>
+                <xs:sequence>
+                  <xs:element ref="band" maxOccurs="unbounded"/>
+                </xs:sequence>
+              </xs:complexType>
+            </xs:element>
+    
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+    
+      <!-- Sequence of scene metadata containers -->
+      <xs:element name="scene_metadata" maxOccurs="unbounded">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element ref="index"/>
+    
+            <!-- Scene global metadata container -->
+            <xs:element name="global_metadata">
+              <xs:complexType>
+                <xs:sequence>
+                  <xs:element ref="data_provider"/>
+                  <xs:element ref="satellite"/>
+                  <xs:element ref="instrument"/>
+                  <xs:element ref="acquisition_date"/>
+                  <xs:element ref="scene_center_time"/>
+                  <xs:element ref="level1_production_date"/>
+                  <xs:element ref="wrs"/>
+                  <xs:element ref="request_id"/>
+                  <xs:element ref="scene_id"/>
+                  <xs:element ref="product_id"/>
+                  <xs:element ref="elevation_source"/>
+                  <xs:element ref="sensor_mode"/>
+                  <xs:element ref="ephemeris_type"/>
+                  <xs:element ref="cpf_name"/>
+                  <xs:element ref="lpgs_metadata_file"/>
+                  <xs:element ref="geometric_rmse_model"/>
+                  <xs:element ref="geometric_rmse_model_x"/>
+                  <xs:element ref="geometric_rmse_model_y"/>
+                </xs:sequence>
+              </xs:complexType>
+            </xs:element>
+        
+            <!-- Scene bands container -->
+            <xs:element name="bands">
+              <xs:complexType>
+                <xs:sequence>
+                  <xs:element ref="band" maxOccurs="unbounded"/>
+                </xs:sequence>
+              </xs:complexType>
+            </xs:element>
+    
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
 
-      </xs:complexType>
-    </xs:element>
-  </xs:sequence>
-
+    </xs:sequence>
+  </xs:complexType>
 </xs:element>
 
 </xs:schema> 
