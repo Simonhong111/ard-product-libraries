@@ -1,4 +1,4 @@
-## ARD-PRODUCT_LIBRARIES Version 1.0.0 Release Notes
+## ARD-PRODUCT-LIBRARIES Version 1.0.0 Release Notes
 Release Date: March 2017
 
 The ARD product library project contains libraries and tools for working with the ARD XML metadata. It currently supports Landsat 4-8.
