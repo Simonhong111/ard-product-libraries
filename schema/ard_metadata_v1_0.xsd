@@ -135,6 +135,7 @@ elementFormDefault="qualified">
     <xs:enumeration value="qa"/>
     <xs:enumeration value="browse"/>
     <xs:enumeration value="index"/>
+    <xs:enumeration value="metadata"/>
     <!-- Additional data types can be added if needed -->
   </xs:restriction>
 </xs:simpleType>
@@ -198,7 +199,7 @@ elementFormDefault="qualified">
 <xs:element name="product_id" type="xs:string"/>
 <xs:element name="lpgs_metadata_file" type="xs:string"/>
 <xs:element name="cpf_name" type="xs:string"/>
-<xs:element name="tile_production_date" type="xs:dateTime"/>
+<xs:element name="tile_production_date" type="xs:date"/>
 <xs:element name="tile_id" type="xs:string"/>
 <xs:element name="east" type="longAngleType"/>
 <xs:element name="west" type="longAngleType"/>
@@ -413,11 +414,11 @@ elementFormDefault="qualified">
       <xs:element ref="valid_range" minOccurs="0"/>
       <xs:element ref="bitmap_description" minOccurs="0"/>
       <xs:element ref="class_values" minOccurs="0"/>
-      <xs:element ref="app_version"/>
+      <xs:element ref="app_version" minOccurs="0"/>
       <xs:element ref="production_date"/>
     </xs:sequence>
     <xs:attribute name="product" type="xs:string" use="required"/>
-    <xs:attribute name="source" type="xs:string" use="required"/>
+    <xs:attribute name="source" type="xs:string" use="optional"/>
     <xs:attribute name="name" type="xs:string" use="required"/>
     <xs:attribute name="category" type="categoryType" use="required"/>
     <xs:attribute name="data_type" type="dataType" use="required"/>
