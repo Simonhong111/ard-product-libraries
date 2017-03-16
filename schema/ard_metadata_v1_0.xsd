@@ -521,6 +521,7 @@ elementFormDefault="qualified">
       </xs:element>
 
     </xs:sequence>
+    <xs:attribute name="version" type="xs:string" use="required"/>
   </xs:complexType>
 </xs:element>
 
