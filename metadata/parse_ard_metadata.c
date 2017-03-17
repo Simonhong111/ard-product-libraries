@@ -1380,7 +1380,7 @@ int add_global_tile_metadata
             return (ERROR);
         }
     }
-    else if (xmlStrEqual (cur_node->name, (const xmlChar *) "tile_id"))
+    else if (xmlStrEqual (cur_node->name, (const xmlChar *) "product_id"))
     {
         /* Expect the child node to be a text node containing the value of
            this field */
@@ -1393,17 +1393,17 @@ int add_global_tile_metadata
         }
 
         /* Copy the content of the child node into the value for this field */
-        count = snprintf (gmeta->tile_id, sizeof (gmeta->tile_id), "%s",
+        count = snprintf (gmeta->product_id, sizeof (gmeta->product_id), "%s",
             (const char *) child_node->content);
-        if (count < 0 || count >= sizeof (gmeta->tile_id))
+        if (count < 0 || count >= sizeof (gmeta->product_id))
         {
-            sprintf (errmsg, "Overflow of gmeta->tile_id");
+            sprintf (errmsg, "Overflow of gmeta->product_id");
             ard_error_handler (true, FUNC_NAME, errmsg);
             return (ERROR);
         }
     }
     else if (xmlStrEqual (cur_node->name,
-        (const xmlChar *) "tile_production_date"))
+        (const xmlChar *) "production_date"))
     {
         /* Expect the child node to be a text node containing the value of
            this field */
@@ -1416,12 +1416,12 @@ int add_global_tile_metadata
         }
 
         /* Copy the content of the child node into the value for this field */
-        count = snprintf (gmeta->tile_production_date,
-            sizeof (gmeta->tile_production_date), "%s",
+        count = snprintf (gmeta->production_date,
+            sizeof (gmeta->production_date), "%s",
             (const char *) child_node->content);
-        if (count < 0 || count >= sizeof (gmeta->tile_production_date))
+        if (count < 0 || count >= sizeof (gmeta->production_date))
         {
-            sprintf (errmsg, "Overflow of gmeta->tile_production_date");
+            sprintf (errmsg, "Overflow of gmeta->production_date");
             ard_error_handler (true, FUNC_NAME, errmsg);
             return (ERROR);
         }

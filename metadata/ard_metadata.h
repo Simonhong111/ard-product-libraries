@@ -135,8 +135,8 @@ typedef struct
 {
     char data_provider[STR_SIZE]; /* name of the original data provider */
     char acquisition_date[STR_SIZE]; /* date of scene acquisition (yyyy-mm-dd)*/
-    char tile_id[STR_SIZE];       /* tile ID */
-    char tile_production_date[STR_SIZE];  /* date the tile was processed */
+    char product_id[STR_SIZE];       /* product ID */
+    char production_date[STR_SIZE];  /* date the tile was processed */
     double bounding_coords[4];    /* geographic west, east, north, south */
     Ard_proj_meta_t proj_info;    /* projection information structure */
     float orientation_angle;      /* orientation angle of the scene (degrees) */

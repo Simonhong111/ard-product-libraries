@@ -360,8 +360,8 @@ int write_ard_metadata
         "    <global_metadata>\n"
         "        <data_provider>%s</data_provider>\n"
         "        <acquisition_date>%s</acquisition_date>\n"
-        "        <tile_id>%s</tile_id>\n"
-        "        <tile_production_date>%s</tile_production_date>\n"
+        "        <product_id>%s</product_id>\n"
+        "        <production_date>%s</production_date>\n"
         "        <bounding_coordinates>\n"
         "            <west>%lf</west>\n"
         "            <east>%lf</east>\n"
@@ -369,7 +369,7 @@ int write_ard_metadata
         "            <south>%lf</south>\n"
         "        </bounding_coordinates>\n",
         tile_gmeta->data_provider, tile_gmeta->acquisition_date,
-        tile_gmeta->tile_id, tile_gmeta->tile_production_date,
+        tile_gmeta->product_id, tile_gmeta->production_date,
         tile_gmeta->bounding_coords[ARD_WEST],
         tile_gmeta->bounding_coords[ARD_EAST],
         tile_gmeta->bounding_coords[ARD_NORTH],

@@ -199,8 +199,6 @@ elementFormDefault="qualified">
 <xs:element name="product_id" type="xs:string"/>
 <xs:element name="lpgs_metadata_file" type="xs:string"/>
 <xs:element name="cpf_name" type="xs:string"/>
-<xs:element name="tile_production_date" type="xs:date"/>
-<xs:element name="tile_id" type="xs:string"/>
 <xs:element name="east" type="longAngleType"/>
 <xs:element name="west" type="longAngleType"/>
 <xs:element name="north" type="latAngleType"/>
@@ -448,8 +446,8 @@ elementFormDefault="qualified">
                 <xs:sequence>
                   <xs:element ref="data_provider"/>
                   <xs:element ref="acquisition_date"/>
-                  <xs:element ref="tile_id"/>
-                  <xs:element ref="tile_production_date"/>
+                  <xs:element ref="product_id"/>
+                  <xs:element ref="production_date"/>
                   <xs:element ref="bounding_coordinates"/>
                   <xs:element ref="projection_information"/>
                   <xs:element ref="orientation_angle"/>

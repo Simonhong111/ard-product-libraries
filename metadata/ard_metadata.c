@@ -160,8 +160,8 @@ void init_ard_metadata_struct
        write metadata routines */
     strcpy (tile_gmeta->data_provider, ARD_STRING_META_FILL);
     strcpy (tile_gmeta->acquisition_date, ARD_STRING_META_FILL);
-    strcpy (tile_gmeta->tile_id, ARD_STRING_META_FILL);
-    strcpy (tile_gmeta->tile_production_date, ARD_STRING_META_FILL);
+    strcpy (tile_gmeta->product_id, ARD_STRING_META_FILL);
+    strcpy (tile_gmeta->production_date, ARD_STRING_META_FILL);
     tile_gmeta->bounding_coords[0] = ARD_FLOAT_META_FILL;
     tile_gmeta->bounding_coords[1] = ARD_FLOAT_META_FILL;
     tile_gmeta->bounding_coords[2] = ARD_FLOAT_META_FILL;
