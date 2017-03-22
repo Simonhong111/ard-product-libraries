@@ -1,8 +1,7 @@
 /*****************************************************************************
 FILE: write_ard_metadata.c
   
-PURPOSE: Contains functions for writing/appending the ARD metadata files along
-with printing to stdout.
+PURPOSE: Contains functions for writing/appending the ARD metadata files.
 
 PROJECT:  Land Satellites Data System Science Research and Development (LSRD)
 at the USGS EROS
@@ -156,7 +155,11 @@ void write_ard_band_metadata
     int nbands,              /* I: number of bands to be written */
     Ard_band_meta_t *bmeta,  /* I: pointer to the array of either tile or
                                    scene band metadata */
-    FILE *fptr               /* I: file pointer to the open XML metadata file */
+    FILE *fptr,              /* I: file pointer to the open XML metadata file */
+    bool skip_bands_cntnr    /* I: skip writing the opening and closing bands
+                                   container information <bands> and </bands>,
+                                   in the event the bands are going to be
+                                   appended to */
 )
 {
     char my_dtype[STR_SIZE]; /* data type string */
@@ -164,8 +167,11 @@ void write_ard_band_metadata
     int i, j;                /* looping variables */
 
     /* Write the bands metadata */
-    fprintf (fptr,
-        "    <bands>\n");
+    if (!skip_bands_cntnr)
+    {
+        fprintf (fptr,
+            "    <bands>\n");
+    }
 
     /* Write the bands themselves.  Make sure the optional parameters have
        been specified and are not fill, otherwise don't write them out. */
@@ -288,9 +294,12 @@ void write_ard_band_metadata
             bmeta[i].production_date);
     }
 
-    /* End bands metadata */
-    fprintf (fptr,
-        "    </bands>\n");
+    /* End bands metadata unless otherwise specified */
+    if (!skip_bands_cntnr)
+    {
+        fprintf (fptr,
+            "    </bands>\n");
+    }
 }
 
 
@@ -309,7 +318,7 @@ SUCCESS         Successfully wrote the metadata file
 NOTES:
   1. If the XML file specified already exists, it will be overwritten.
   2. Use this routine to create a new metadata file.  To append bands to an
-     existing metadata file, use append_metadata.
+     existing metadata file, use append_tile_bands_ard_metadata.
   3. It is recommended that validate_meta be used after writing the XML file
      to make sure the new file is valid against the ARD schema.
 ******************************************************************************/
@@ -395,9 +404,9 @@ int write_ard_metadata
     fprintf (fptr,
         "    </global_metadata>\n\n");
 
-    /* Write the tile-based band metadata */
+    /* Write the tile-based band metadata and close the bands */
     write_ard_band_metadata (ard_meta->tile_meta.nbands,
-        ard_meta->tile_meta.band, fptr);
+        ard_meta->tile_meta.band, fptr, false);
 
     /* End tile metadata */
     fprintf (fptr,
@@ -473,9 +482,9 @@ int write_ard_metadata
             scene_gmeta->geometric_rmse_model_x,
             scene_gmeta->geometric_rmse_model_y);
 
-        /* Write the scene-based band metadata */
+        /* Write the scene-based band metadata and close the bands */
         write_ard_band_metadata (ard_meta->scene_meta[i].nbands,
-            ard_meta->scene_meta[i].band, fptr);
+            ard_meta->scene_meta[i].band, fptr, false);
 
         /* End scene metadata */
         fprintf (fptr,

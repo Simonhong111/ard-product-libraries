@@ -2513,17 +2513,19 @@ ERROR           Error parsing the metadata elements
 SUCCESS         Successful parse of the metadata values
 
 NOTES:
-1. Uses a stack of character strings to keep track of the nodes that have beend
+1. Uses a stack of character strings to keep track of the nodes that have been
    found in the metadata document.
 2. For debugging purposes
    xmlDocDump (stderr, doc);
    can be used to dump/print the XML doc to the screen.
+3. Input ARD metadata structure needs to be initialized via
+   init_ard_metadata_struct.
 ******************************************************************************/
 int parse_ard_metadata
 (
     char *metafile,       /* I: input metadata file or URL */
     Ard_meta_t *ard_meta  /* I: input ARD metadata structure which has been
-                                initialized via init_metadata_struct */
+                                initialized via init_ard_metadata_struct */
 )
 {
     char FUNC_NAME[] = "parse_ard_metadata";  /* function name */

@@ -408,7 +408,40 @@ int allocate_bitmap_metadata
 
 
 /******************************************************************************
-MODULE:  free_metadata
+MODULE:  free_ard_band_metadata
+
+PURPOSE:  Frees memory in the ARD bands metadata
+
+RETURN VALUE: N/A
+
+NOTES:
+******************************************************************************/
+void free_ard_band_metadata
+(
+    int nbands,            /* I: number of bands in the metadata file */
+    Ard_band_meta_t *band  /* I/O: array of band metadata to be freed */
+)
+{
+    int i, b;       /* looping variables */
+
+    /* Free the pointers in band metadata */
+    for (i = 0; i < nbands; i++)
+    {
+        if (band[i].nbits > 0)
+        {
+            for (b = 0; b < band[i].nbits; b++)
+                free (band[i].bitmap_description[b]);
+            free (band[i].bitmap_description);
+        }
+
+        free (band[i].class_values);
+    }
+    free (band);
+}
+
+
+/******************************************************************************
+MODULE:  free_ard_metadata
 
 PURPOSE:  Frees memory in the ARD tile and scene metadata structures.
 
@@ -421,13 +454,14 @@ void free_ard_metadata
     Ard_meta_t *ard_meta   /* I: pointer to ARD metadata structure */
 )
 {
-    int i, b;                        /* looping variables */
+//    int i, b;                        /* looping variables */
     Ard_tile_meta_t *tmeta = NULL;   /* pointer to the tile metadata */
     Ard_scene_meta_t *smeta = NULL;  /* pointer to the scene metadata */
 
     /* Free the pointers in the tile-specific band metadata */
     tmeta = &ard_meta->tile_meta;
-    for (i = 0; i < tmeta->nbands; i++)
+    free_ard_band_metadata (tmeta->nbands, tmeta->band);
+/*    for (i = 0; i < tmeta->nbands; i++)
     {
         if (tmeta->band[i].nbits > 0)
         {
@@ -439,10 +473,12 @@ void free_ard_metadata
         free (tmeta->band[i].class_values);
     }
     free (tmeta->band);
+*/
 
     /* Free the pointers in the scene-specific band metadata */
     smeta = ard_meta->scene_meta;
-    for (i = 0; i < smeta->nbands; i++)
+    free_ard_band_metadata (smeta->nbands, smeta->band);
+/*    for (i = 0; i < smeta->nbands; i++)
     {
         if (smeta->band[i].nbits > 0)
         {
@@ -454,6 +490,7 @@ void free_ard_metadata
         free (smeta->band[i].class_values);
     }
     free (smeta->band);
+*/
 }
 
 

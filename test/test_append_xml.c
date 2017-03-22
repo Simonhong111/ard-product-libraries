@@ -1,7 +1,7 @@
 /*****************************************************************************
-FILE: test_write_xml
+FILE: test_append_xml
 
-PURPOSE: Tests writing the ARD XML file.
+PURPOSE: Tests writing appended bands for the tile_metadata to the ARD XML file.
 
 PROJECT:  Land Satellites Data System Science Research and Development (LSRD)
 at the USGS EROS
@@ -19,7 +19,7 @@ NOTES:
 #include "ard_metadata.h"
 #include "ard_error_handler.h"
 #include "parse_ard_metadata.h"
-#include "write_ard_metadata.h"
+#include "append_ard_tile_bands_metadata.h"
 
 
 /******************************************************************************
@@ -34,19 +34,21 @@ NOTES:
 ******************************************************************************/
 void usage ()
 {
-    printf ("test_write_xml parses the input XML file and then writes it "
-            "back out to a new XML file to allow them to be compared.");
-    printf ("usage: test_write_xml "
+    printf ("test_append_xml parses the input XML file and then writes it "
+            "back out to a new XML file, adding a few random bands to the "
+            "tile_metadata as defined in this test source code.");
+    printf ("usage: test_append_xml "
             "--xml=input_ard_metadata_filename\n");
 
     printf ("\nwhere the following parameters are required:\n");
     printf ("    -xml: name of the input ARD XML metadata file which follows "
             "the ARD schema (format defined in the ARD DFCB)\n");
 
-    printf ("\nExample: test_write_xml "
+    printf ("\nExample: test_append_xml"
             "--xml=LE07_CU_019002_19991006_20170307_C01_V01.xml\n");
     printf ("This reads the input XML and then writes it back out as "
-            "{base_xml_name}_new.xml\n");
+            "{base_xml_name}_new.xml, but appends a few user-provided band "
+            "to the tile_metadata as provided in the source code.\n");
 }
 
 
@@ -141,7 +143,8 @@ short get_args
 /******************************************************************************
 MODULE:  main
 
-PURPOSE: Grabs the input XML file, parses it, then writes it back out.
+PURPOSE: Grabs the input XML file, parses it, writes it back out, and appends
+the new bands to the tile_metadata as provided in this source code.
 
 RETURN VALUE:
 Type = int
@@ -154,13 +157,15 @@ NOTES:
 ******************************************************************************/
 int main (int argc, char** argv)
 {
-//    char FUNC_NAME[] = "test_write_xml";  /* function name */
-//    char errmsg[STR_SIZE];       /* error message */
+    char FUNC_NAME[] = "test_append_xml";  /* function name */
+    char errmsg[STR_SIZE];       /* error message */
     char *cptr = NULL;           /* pointer to file extension */
     char *xml_infile = NULL;     /* input XML filename */
     char xml_outfile[STR_SIZE];  /* output XML filename */
+    int nbands_append;           /* number of new bands to append */
     Ard_meta_t ard_meta;         /* XML metadata structure to be populated by
                                     reading the input XML metadata file */
+    Ard_tile_meta_t new_tile_meta; /* tile-specific metadata for new bands */
 
     /* Read the command-line arguments */
     if (get_args (argc, argv, &xml_infile) != SUCCESS)
@@ -191,15 +196,33 @@ int main (int argc, char** argv)
     cptr = strchr (xml_outfile, '.');
     strcpy (cptr, "_new.xml");
 
-    /* Write the metadata to a new output XML file */
-    printf ("Writing ARD metadata to %s\n", xml_outfile);
-    if (write_ard_metadata (&ard_meta, xml_outfile) != SUCCESS)
+    /* Initialize new bands to be appended to the tile_metadata */
+    nbands_append = 3;
+    if (allocate_band_metadata (&new_tile_meta, NULL, nbands_append) != SUCCESS)
+    {
+        sprintf (errmsg, "Allocating %d new bands for ARD tile metadata",
+            nbands_append);
+        ard_error_handler (true, FUNC_NAME, errmsg);
+        return (ERROR);
+    }
+
+    /* TODO - Add band information to the 3 bands, if desired.  For now the
+       bands will just be the default/initialized values. */
+
+    /* Write the metadata to a new output XML file, appending the additional
+       bands for the tile_metadata */
+    printf ("Writing/appending ARD metadata to %s\n", xml_outfile);
+    if (append_tile_bands_ard_metadata (&ard_meta, nbands_append,
+        new_tile_meta.band, xml_outfile) != SUCCESS)
     {  /* Error messages already written */
         return (ERROR);
     }
 
-    /* Free the input and output XML metadata */
+    /* Free the input XML metadata */
     free_ard_metadata (&ard_meta);
+
+    /* Free the new bands for the tile_metadata */
+    free_ard_band_metadata (new_tile_meta.nbands, new_tile_meta.band);
 
     /* Free the pointers */
     free (xml_infile);

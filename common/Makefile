@@ -50,20 +50,20 @@ $(ARCHIVE): $(OBJ) $(INC)
 #-----------------------------------------------------------------------------
 install-headers:
 	install -d $(inc_link_path)
-	install -d $(raw_binary_inc_install_path)
+	install -d $(ard_library_inc_install_path)
 	@for inc in $(INC); do \
-        echo "install -m 644 $$inc $(raw_binary_inc_install_path)/$$inc"; \
-        install -m 644 $$inc $(raw_binary_inc_install_path)/$$inc; \
-        echo "ln -sf $(raw_binary_link_inc_path)/$$inc $(inc_link_path)/$$inc"; \
-        ln -sf $(raw_binary_link_inc_path)/$$inc $(inc_link_path)/$$inc; \
+        echo "install -m 644 $$inc $(ard_library_inc_install_path)/$$inc"; \
+        install -m 644 $$inc $(ard_library_inc_install_path)/$$inc; \
+        echo "ln -sf $(ard_library_link_inc_path)/$$inc $(inc_link_path)/$$inc"; \
+        ln -sf $(ard_library_link_inc_path)/$$inc $(inc_link_path)/$$inc; \
         done
 
 #-----------------------------------------------------------------------------
 install-lib: all
 	install -d $(lib_link_path)
-	install -d $(raw_binary_lib_install_path)
-	install -m 644 $(ARCHIVE) $(raw_binary_lib_install_path)
-	ln -sf $(raw_binary_link_lib_path)/$(ARCHIVE) $(lib_link_path)/$(ARCHIVE)
+	install -d $(ard_library_lib_install_path)
+	install -m 644 $(ARCHIVE) $(ard_library_lib_install_path)
+	ln -sf $(ard_library_link_lib_path)/$(ARCHIVE) $(lib_link_path)/$(ARCHIVE)
 
 #-----------------------------------------------------------------------------
 install: install-lib install-headers

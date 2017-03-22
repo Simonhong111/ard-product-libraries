@@ -273,6 +273,12 @@ int allocate_bitmap_metadata
                                        bitmap metadata */
 );
 
+void free_ard_band_metadata
+(
+    int nbands,            /* I: number of bands in the metadata file */
+    Ard_band_meta_t *band  /* I/O: array of band metadata to be freed */
+);
+
 void free_ard_metadata
 (
     Ard_meta_t *ard_meta     /* I: pointer to ARD metadata structure */
