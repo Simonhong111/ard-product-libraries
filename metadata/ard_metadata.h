@@ -31,7 +31,7 @@ NOTES:
 #define ARD_SCHEMA_VERSION "1.0"
 #define ARD_NS "http://ard.cr.usgs.gov/v1"
 #define ARD_SCHEMA_LOCATION "http://ard.cr.usgs.gov/v1"
-#define ARD_SCHEMA "http://espa.cr.usgs.gov/schema/ard_metadata_v1_0.xsd"
+#define ARD_SCHEMA "http://espa.cr.usgs.gov/schema/ard/ard_metadata_v1_0.xsd"
 #define LOCAL_ARD_SCHEMA "/usr/local/ard-product-libraries/schema/ard_metadata_v1_0.xsd"
 
 /* Data types */

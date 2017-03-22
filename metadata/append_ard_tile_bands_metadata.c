@@ -13,7 +13,7 @@ NOTES:
   1. The XML metadata format written via this library follows the ARD metadata
      format found in the ARD DFCB.  The schema for the ARD metadata format is
      available at
-     http://espa.cr.usgs.gov/schema/ard_metadata_v1_0.xsd.
+     http://espa.cr.usgs.gov/schema/ard/ard_metadata_v1_0.xsd.
 *****************************************************************************/
 
 #include <math.h>

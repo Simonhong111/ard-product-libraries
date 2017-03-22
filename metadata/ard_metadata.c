@@ -13,7 +13,7 @@ NOTES:
   1. The XML metadata format parsed or written via this library follows the
      ARD metadata format.
      The schema for the ARD metadata format is available via the ARD DFCB or
-     http://espa.cr.usgs.gov/schema/ard_internal_metadata_v1_0.xsd.
+     http://espa.cr.usgs.gov/schema/ard/ard_internal_metadata_v1_0.xsd.
   2. This code relies on the libxml2 library developed for the Gnome project.
 *****************************************************************************/
 #include <sys/stat.h>
@@ -454,43 +454,16 @@ void free_ard_metadata
     Ard_meta_t *ard_meta   /* I: pointer to ARD metadata structure */
 )
 {
-//    int i, b;                        /* looping variables */
     Ard_tile_meta_t *tmeta = NULL;   /* pointer to the tile metadata */
     Ard_scene_meta_t *smeta = NULL;  /* pointer to the scene metadata */
 
     /* Free the pointers in the tile-specific band metadata */
     tmeta = &ard_meta->tile_meta;
     free_ard_band_metadata (tmeta->nbands, tmeta->band);
-/*    for (i = 0; i < tmeta->nbands; i++)
-    {
-        if (tmeta->band[i].nbits > 0)
-        {
-            for (b = 0; b < tmeta->band[i].nbits; b++)
-                free (tmeta->band[i].bitmap_description[b]);
-            free (tmeta->band[i].bitmap_description);
-        }
-
-        free (tmeta->band[i].class_values);
-    }
-    free (tmeta->band);
-*/
 
     /* Free the pointers in the scene-specific band metadata */
     smeta = ard_meta->scene_meta;
     free_ard_band_metadata (smeta->nbands, smeta->band);
-/*    for (i = 0; i < smeta->nbands; i++)
-    {
-        if (smeta->band[i].nbits > 0)
-        {
-            for (b = 0; b < smeta->band[i].nbits; b++)
-                free (smeta->band[i].bitmap_description[b]);
-            free (smeta->band[i].bitmap_description);
-        }
-
-        free (smeta->band[i].class_values);
-    }
-    free (smeta->band);
-*/
 }
 
 
