@@ -198,7 +198,8 @@ int main (int argc, char** argv)
 
     /* Initialize new bands to be appended to the tile_metadata */
     nbands_append = 3;
-    if (allocate_band_metadata (&new_tile_meta, NULL, nbands_append) != SUCCESS)
+    if (allocate_ard_band_metadata (&new_tile_meta, NULL, nbands_append) !=
+        SUCCESS)
     {
         sprintf (errmsg, "Allocating %d new bands for ARD tile metadata",
             nbands_append);

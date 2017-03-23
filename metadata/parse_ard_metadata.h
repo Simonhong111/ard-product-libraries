@@ -25,37 +25,37 @@ NOTES:
 #include "ard_metadata.h"
 #include "meta_stack.h"
 
-int add_global_metadata_proj_info_albers
+int add_global_ard_metadata_proj_info_albers
 (
     xmlNode *a_node,            /* I: pointer to the element node to process */
     Ard_proj_meta_t *proj_info  /* I: projection info structure */
 );
 
-int add_global_metadata_proj_info_ps
+int add_global_ard_metadata_proj_info_ps
 (
     xmlNode *a_node,            /* I: pointer to the element node to process */
     Ard_proj_meta_t *proj_info  /* I: projection info structure */
 );
 
-int add_global_metadata_proj_info_sin
+int add_global_ard_metadata_proj_info_sin
 (
     xmlNode *a_node,            /* I: pointer to the element node to process */
     Ard_proj_meta_t *proj_info  /* I: projection info structure */
 );
 
-int add_global_metadata_proj_info_utm
+int add_global_ard_metadata_proj_info_utm
 (
     xmlNode *a_node,            /* I: pointer to the element node to process */
     Ard_proj_meta_t *proj_info  /* I: projection info structure */
 );
 
-int add_global_metadata_proj_info
+int add_global_ard_metadata_proj_info
 (
     xmlNode *a_node,            /* I: pointer to the element node to process */
     Ard_proj_meta_t *proj_info  /* I: projection info structure */
 );
 
-int add_global_metadata_bounding_coords
+int add_global_ard_metadata_bounding_coords
 (
     xmlNode *a_node,            /* I: pointer to the element node to process */
     double bounding_coords[4]   /* O: bounding coordinates */
@@ -73,7 +73,7 @@ int add_global_tile_metadata
     Ard_global_tile_meta_t *gmeta /* I: tile-based global metadata struct */
 );
 
-int add_band_metadata_bitmap_description
+int add_ard_band_metadata_bitmap_description
 (
     xmlNode *a_node,            /* I/O: pointer to the element node to
                                         process */
@@ -81,7 +81,7 @@ int add_band_metadata_bitmap_description
                                       band in the bands structure */
 );
 
-int add_band_metadata_class_values
+int add_ard_band_metadata_class_values
 (
     xmlNode *a_node,            /* I/O: pointer to the element node to
                                         process */
@@ -89,14 +89,14 @@ int add_band_metadata_class_values
                                       band in the bands structure */
 );
 
-int add_band_metadata
+int add_ard_band_metadata
 (
     xmlNode *a_node,            /* I: pointer to the element node to process */
     Ard_band_meta_t *bmeta      /* I: band metadata structure for current
                                       band in the bands structure */
 );
 
-int parse_xml_into_struct
+int parse_ard_xml_into_struct
 (
     xmlNode *a_node,           /* I: pointer to the current node */
     Ard_meta_t *ard_meta,      /* I: ARD metadata structure to be filled */

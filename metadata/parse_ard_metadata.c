@@ -20,7 +20,7 @@ NOTES:
 #include "parse_ard_metadata.h"
 
 /******************************************************************************
-MODULE:  add_global_metadata_proj_info_albers
+MODULE:  add_global_ard_metadata_proj_info_albers
 
 PURPOSE: Add the ALBERS projection elements node to the global metadata
 projection information structure.
@@ -34,13 +34,14 @@ SUCCESS         Successful parse of the projection_info values
 
 NOTES:
 ******************************************************************************/
-int add_global_metadata_proj_info_albers
+int add_global_ard_metadata_proj_info_albers
 (
     xmlNode *a_node,            /* I: pointer to the element node to process */
     Ard_proj_meta_t *proj_info  /* I: projection info structure */
 )
 {
-    char FUNC_NAME[] = "add_global_metadata_proj_info_albers"; /* func name */
+    char FUNC_NAME[] = "add_global_ard_metadata_proj_info_albers";
+                                  /* func name */
     char errmsg[STR_SIZE];        /* error message */
     xmlNode *cur_node = NULL;     /* pointer to the current node */
     xmlNode *child_node = NULL;   /* pointer to the child node */
@@ -190,7 +191,7 @@ int add_global_metadata_proj_info_albers
 
 
 /******************************************************************************
-MODULE:  add_global_metadata_proj_info_ps
+MODULE:  add_global_ard_metadata_proj_info_ps
 
 PURPOSE: Add the Polar Stereographic projection elements node to the global
 metadata projection information structure.
@@ -204,13 +205,14 @@ SUCCESS         Successful parse of the projection_info values
 
 NOTES:
 ******************************************************************************/
-int add_global_metadata_proj_info_ps
+int add_global_ard_metadata_proj_info_ps
 (
     xmlNode *a_node,            /* I: pointer to the element node to process */
     Ard_proj_meta_t *proj_info  /* I: projection info structure */
 )
 {
-    char FUNC_NAME[] = "add_global_metadata_proj_info_ps"; /* function name */
+    char FUNC_NAME[] = "add_global_ard_metadata_proj_info_ps";
+                                  /* function name */
     char errmsg[STR_SIZE];        /* error message */
     xmlNode *cur_node = NULL;     /* pointer to the current node */
     xmlNode *child_node = NULL;   /* pointer to the child node */
@@ -320,7 +322,7 @@ int add_global_metadata_proj_info_ps
 
 
 /******************************************************************************
-MODULE:  add_global_metadata_proj_info_sin
+MODULE:  add_global_ard_metadata_proj_info_sin
 
 PURPOSE: Add the SIN projection elements node to the global metadata projection
 information structure.
@@ -334,13 +336,13 @@ SUCCESS         Successful parse of the projection_info values
 
 NOTES:
 ******************************************************************************/
-int add_global_metadata_proj_info_sin
+int add_global_ard_metadata_proj_info_sin
 (
     xmlNode *a_node,            /* I: pointer to the element node to process */
     Ard_proj_meta_t *proj_info  /* I: projection info structure */
 )
 {
-    char FUNC_NAME[] = "add_global_metadata_proj_info_sin"; /* func name */
+    char FUNC_NAME[] = "add_global_ard_metadata_proj_info_sin"; /* func name */
     char errmsg[STR_SIZE];        /* error message */
     xmlNode *cur_node = NULL;     /* pointer to the current node */
     xmlNode *child_node = NULL;   /* pointer to the child node */
@@ -451,7 +453,7 @@ int add_global_metadata_proj_info_sin
 
 
 /******************************************************************************
-MODULE:  add_global_metadata_proj_info_utm
+MODULE:  add_global_ard_metadata_proj_info_utm
 
 PURPOSE: Add the UTM projection elements node to the global metadata projection
 information structure.
@@ -465,13 +467,14 @@ SUCCESS         Successful parse of the projection_info values
 
 NOTES:
 ******************************************************************************/
-int add_global_metadata_proj_info_utm
+int add_global_ard_metadata_proj_info_utm
 (
     xmlNode *a_node,            /* I: pointer to the element node to process */
     Ard_proj_meta_t *proj_info  /* I: projection info structure */
 )
 {
-    char FUNC_NAME[] = "add_global_metadata_proj_info_utm"; /* function name */
+    char FUNC_NAME[] = "add_global_ard_metadata_proj_info_utm";
+                                  /* function name */
     char errmsg[STR_SIZE];        /* error message */
     xmlNode *cur_node = NULL;     /* pointer to the current node */
     xmlNode *child_node = NULL;   /* pointer to the child node */
@@ -521,7 +524,7 @@ int add_global_metadata_proj_info_utm
 
 
 /******************************************************************************
-MODULE:  add_global_metadata_proj_info
+MODULE:  add_global_ard_metadata_proj_info
 
 PURPOSE: Add the projection elements node to the global metadata structure.
 
@@ -534,13 +537,13 @@ SUCCESS         Successful parse of the projection_info values
 
 NOTES:
 ******************************************************************************/
-int add_global_metadata_proj_info
+int add_global_ard_metadata_proj_info
 (
     xmlNode *a_node,            /* I: pointer to the element node to process */
     Ard_proj_meta_t *proj_info  /* I: projection info structure */
 )
 {
-    char FUNC_NAME[] = "add_global_metadata_proj_info"; /* function name */
+    char FUNC_NAME[] = "add_global_ard_metadata_proj_info"; /* function name */
     char errmsg[STR_SIZE];        /* error message */
     xmlAttrPtr attr = NULL;       /* pointer to the element attributes */
     xmlNode *cur_node = NULL;     /* pointer to the current node */
@@ -701,7 +704,7 @@ int add_global_metadata_proj_info
             (const xmlChar *) "utm_proj_params"))
         {
             /* Handle the projection-specific parameters */
-            if (add_global_metadata_proj_info_utm (cur_node, proj_info))
+            if (add_global_ard_metadata_proj_info_utm (cur_node, proj_info))
             {
                 sprintf (errmsg, "Processing projection_information:"
                     "utm_proj_params elements");
@@ -713,7 +716,7 @@ int add_global_metadata_proj_info
             (const xmlChar *) "ps_proj_params"))
         {
             /* Handle the projection-specific parameters */
-            if (add_global_metadata_proj_info_ps (cur_node, proj_info))
+            if (add_global_ard_metadata_proj_info_ps (cur_node, proj_info))
             {
                 sprintf (errmsg, "Processing projection_information:"
                     "ps_proj_params elements");
@@ -725,7 +728,7 @@ int add_global_metadata_proj_info
             (const xmlChar *) "albers_proj_params"))
         {
             /* Handle the projection-specific parameters */
-            if (add_global_metadata_proj_info_albers (cur_node, proj_info))
+            if (add_global_ard_metadata_proj_info_albers (cur_node, proj_info))
             {
                 sprintf (errmsg, "Processing projection_information:"
                     "albers_proj_params elements");
@@ -737,7 +740,7 @@ int add_global_metadata_proj_info
             (const xmlChar *) "sin_proj_params"))
         {
             /* Handle the projection-specific parameters */
-            if (add_global_metadata_proj_info_sin (cur_node, proj_info))
+            if (add_global_ard_metadata_proj_info_sin (cur_node, proj_info))
             {
                 sprintf (errmsg, "Processing projection_information:"
                     "sin_proj_params elements");
@@ -758,7 +761,7 @@ int add_global_metadata_proj_info
 
 
 /******************************************************************************
-MODULE:  add_global_metadata_bounding_coords
+MODULE:  add_global_ard_metadata_bounding_coords
 
 PURPOSE: Add the bounding coords elements node to the global metadata structure
 
@@ -771,13 +774,14 @@ SUCCESS         Successful parse of the bounding_coords values
 
 NOTES:
 ******************************************************************************/
-int add_global_metadata_bounding_coords
+int add_global_ard_metadata_bounding_coords
 (
     xmlNode *a_node,            /* I: pointer to the element node to process */
     double bounding_coords[4]   /* O: bounding coordinates */
 )
 {
-    char FUNC_NAME[] = "add_global_metadata_bounding_coords";/* function name */
+    char FUNC_NAME[] = "add_global_ard_metadata_bounding_coords";
+                                  /* function name */
     char errmsg[STR_SIZE];        /* error message */
     xmlNode *cur_node = NULL;     /* pointer to the current node */
     xmlNode *child_node = NULL;   /* pointer to the child node */
@@ -1433,7 +1437,7 @@ int add_global_tile_metadata
         for (cur_node = a_node->children; cur_node;
              cur_node = xmlNextElementSibling (cur_node))
         {
-            if (add_global_metadata_bounding_coords (cur_node,
+            if (add_global_ard_metadata_bounding_coords (cur_node,
                 gmeta->bounding_coords))
             {
                 sprintf (errmsg, "Processing bounding_coordinates element: %s.",
@@ -1447,7 +1451,7 @@ int add_global_tile_metadata
         (const xmlChar *) "projection_information"))
     {
         /* Process the elements within the projection information */
-        if (add_global_metadata_proj_info (cur_node, &gmeta->proj_info))
+        if (add_global_ard_metadata_proj_info (cur_node, &gmeta->proj_info))
         {
             sprintf (errmsg, "Processing projection_information elements");
             ard_error_handler (true, FUNC_NAME, errmsg);
@@ -1577,7 +1581,7 @@ int add_global_tile_metadata
 
 
 /******************************************************************************
-MODULE:  add_band_metadata_bitmap_description
+MODULE:  add_ard_band_metadata_bitmap_description
 
 PURPOSE: Adds the bit elements to the bitmap description to the band metadata
 structure.
@@ -1593,7 +1597,7 @@ NOTES:
 1. Memory is allocated in the band metadata for the number of bits in the
    bitmap description.
 ******************************************************************************/
-int add_band_metadata_bitmap_description
+int add_ard_band_metadata_bitmap_description
 (
     xmlNode *a_node,            /* I/O: pointer to the element node to
                                         process */
@@ -1601,7 +1605,8 @@ int add_band_metadata_bitmap_description
                                       band in the bands structure */
 )
 {
-    char FUNC_NAME[] = "add_band_metadata_bitmap_description"; /* func name */
+    char FUNC_NAME[] = "add_ard_band_metadata_bitmap_description";
+                                  /* func name */
     char errmsg[STR_SIZE];        /* error message */
     xmlNode *cur_node = NULL;     /* pointer to the current node */
     xmlNode *child_node = NULL;   /* pointer to the child node */
@@ -1618,7 +1623,7 @@ int add_band_metadata_bitmap_description
     }
 
     /* Allocate memory in the band structure for the number of bits */
-    if (allocate_bitmap_metadata (bmeta, nbits) != SUCCESS)
+    if (allocate_ard_bitmap_metadata (bmeta, nbits) != SUCCESS)
     {
         sprintf (errmsg, "Allocating memory to the band structure for %d "
             "bits in the bitmap description.", nbits);
@@ -1671,7 +1676,7 @@ int add_band_metadata_bitmap_description
 
 
 /******************************************************************************
-MODULE:  add_band_metadata_class_values
+MODULE:  add_ard_band_metadata_class_values
 
 PURPOSE: Adds the class elements to the band metadata structure.
 
@@ -1686,7 +1691,7 @@ NOTES:
 1. Memory is allocated in the band metadata for the number of classes in the
    class values.
 ******************************************************************************/
-int add_band_metadata_class_values
+int add_ard_band_metadata_class_values
 (
     xmlNode *a_node,            /* I/O: pointer to the element node to
                                         process */
@@ -1694,7 +1699,7 @@ int add_band_metadata_class_values
                                       band in the bands structure */
 )
 {
-    char FUNC_NAME[] = "add_band_metadata_class_values"; /* func name */
+    char FUNC_NAME[] = "add_ard_band_metadata_class_values"; /* func name */
     char errmsg[STR_SIZE];        /* error message */
     xmlNode *cur_node = NULL;     /* pointer to the current node */
     xmlNode *child_node = NULL;   /* pointer to the child node */
@@ -1713,7 +1718,7 @@ int add_band_metadata_class_values
     }
 
     /* Allocate memory in the band structure for the number of classes */
-    if (allocate_class_metadata (bmeta, nclass) != SUCCESS)
+    if (allocate_ard_class_metadata (bmeta, nclass) != SUCCESS)
     {
         sprintf (errmsg, "Allocating memory to the band structure for %d "
             "classes in the class_values.", nclass);
@@ -1782,7 +1787,7 @@ int add_band_metadata_class_values
 
 
 /******************************************************************************
-MODULE:  add_band_metadata
+MODULE:  add_ard_band_metadata
 
 PURPOSE: Add the current band element node to the current band metadata
 structure and process the childrend of this node.
@@ -1796,14 +1801,14 @@ SUCCESS         Successful parse of the band metadata values
 
 NOTES:
 ******************************************************************************/
-int add_band_metadata
+int add_ard_band_metadata
 (
     xmlNode *a_node,            /* I: pointer to the element node to process */
     Ard_band_meta_t *bmeta      /* I: band metadata structure for current
                                       band in the bands structure */
 )
 {
-    char FUNC_NAME[] = "add_band_metadata";   /* function name */
+    char FUNC_NAME[] = "add_ard_band_metadata";   /* function name */
     char errmsg[STR_SIZE];        /* error message */
     xmlAttrPtr attr = NULL;       /* pointer to the element attributes */
     xmlNode *cur_node = NULL;     /* pointer to the current node */
@@ -2143,7 +2148,7 @@ int add_band_metadata
         else if (xmlStrEqual (cur_node->name,
             (const xmlChar *) "bitmap_description"))
         {
-            if (add_band_metadata_bitmap_description (cur_node->children,
+            if (add_ard_band_metadata_bitmap_description (cur_node->children,
                 bmeta) != SUCCESS)
             {
                 sprintf (errmsg, "Processing bitmap_description element: "
@@ -2154,8 +2159,8 @@ int add_band_metadata
         }
         else if (xmlStrEqual (cur_node->name, (const xmlChar *) "class_values"))
         {
-            if (add_band_metadata_class_values (cur_node->children, bmeta) !=
-                SUCCESS)
+            if (add_ard_band_metadata_class_values (cur_node->children, bmeta)
+                != SUCCESS)
             {
                 sprintf (errmsg, "Processing class_values element: %s.",
                     cur_node->name);
@@ -2176,7 +2181,7 @@ int add_band_metadata
 
 
 /******************************************************************************
-MODULE:  parse_xml_into_struct
+MODULE:  parse_ard_xml_into_struct
 
 PURPOSE: Parse the XML document data into the ARD metadata structure.
 
@@ -2191,7 +2196,7 @@ NOTES:
 1. Uses a stack of character strings to keep track of the nodes that have
    been parsed.  The stack must be allocated before calling this routine.
 ******************************************************************************/
-int parse_xml_into_struct
+int parse_ard_xml_into_struct
 (
     xmlNode *a_node,           /* I: pointer to the current node */
     Ard_meta_t *ard_meta,      /* I: ARD metadata structure to be filled */
@@ -2199,7 +2204,7 @@ int parse_xml_into_struct
     char **stack               /* I: stack to use for parsing */
 )
 {
-    char FUNC_NAME[] = "parse_xml_into_struct";  /* function name */
+    char FUNC_NAME[] = "parse_ard_xml_into_struct";  /* function name */
     char errmsg[STR_SIZE];        /* error message */
     char *curr_stack_element = NULL;  /* element popped from the stack */
     xmlNode *cur_node = NULL;    /* pointer to the current node */
@@ -2349,7 +2354,7 @@ int parse_xml_into_struct
                    scene metadata */
                 if (tile_metadata)
                 {
-                    if (allocate_band_metadata (tile_meta, NULL, nbands) !=
+                    if (allocate_ard_band_metadata (tile_meta, NULL, nbands) !=
                         SUCCESS)
                     {   /* Error messages already printed */
                         return (ERROR);
@@ -2357,7 +2362,7 @@ int parse_xml_into_struct
                 }
                 else if (scene_metadata)
                 {
-                    if (allocate_band_metadata (NULL, scene_meta, nbands) !=
+                    if (allocate_ard_band_metadata (NULL, scene_meta, nbands) !=
                         SUCCESS)
                     {   /* Error messages already printed */
                         return (ERROR);
@@ -2434,7 +2439,7 @@ int parse_xml_into_struct
                     bmeta = &tile_meta->band[cur_band++];
                 else if (scene_metadata)
                     bmeta = &scene_meta->band[cur_band++];
-                if (add_band_metadata (cur_node, bmeta))
+                if (add_ard_band_metadata (cur_node, bmeta))
                 {
                     sprintf (errmsg, "Consuming band metadata element '%s'.",
                         cur_node->name);
@@ -2457,7 +2462,7 @@ int parse_xml_into_struct
            elsewhere */
         if (!skip_child)
         {
-            if (parse_xml_into_struct (cur_node->children, ard_meta,
+            if (parse_ard_xml_into_struct (cur_node->children, ard_meta,
                 top_of_stack, stack))
             {
                 sprintf (errmsg, "Parsing the children of this element '%s'.",
@@ -2725,7 +2730,7 @@ int parse_ard_metadata
         //print_element_names (xmlDocGetRootElement (doc));
 
         /* Parse the XML document into our ARD metadata structure */
-        if (parse_xml_into_struct (xmlDocGetRootElement(doc), ard_meta,
+        if (parse_ard_xml_into_struct (xmlDocGetRootElement(doc), ard_meta,
             &top_of_stack, stack))
         {
             sprintf (errmsg, "Parsing the metadata file into the ARD metadata "

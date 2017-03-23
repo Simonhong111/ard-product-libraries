@@ -249,7 +249,7 @@ void init_ard_metadata_struct
                                     initialized */
 );
 
-int allocate_band_metadata
+int allocate_ard_band_metadata
 (
     Ard_tile_meta_t *tile_meta,   /* I: pointer to tile-specific metadata,
                                         NULL if initializing scene metadata */
@@ -259,14 +259,14 @@ int allocate_band_metadata
                          scene-specific band field */
 );
 
-int allocate_class_metadata
+int allocate_ard_class_metadata
 (
     Ard_band_meta_t *band_meta,  /* I: pointer to band metadata structure */
     int nclass                   /* I: number of classes to allocate for the
                                        band metadata */
 );
 
-int allocate_bitmap_metadata
+int allocate_ard_bitmap_metadata
 (
     Ard_band_meta_t *band_meta,  /* I: pointer to band metadata structure */
     int nbits                    /* I: number of bits to allocate for the
@@ -288,11 +288,6 @@ void print_element_names
 (
     xmlNode *a_node   /* I: pointer to the current node in the tree to start
                             printing */
-);
-
-void print_metadata_struct
-(
-    Ard_meta_t *metadata     /* I: input metadata structure to be printed */
 );
 
 #endif

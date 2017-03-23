@@ -216,7 +216,7 @@ void init_ard_metadata_struct
 
 
 /******************************************************************************
-MODULE:  allocate_band_metadata
+MODULE:  allocate_ard_band_metadata
 
 PURPOSE:  Allocates memory in the ARD scene or tile metadata structure for
 nbands.
@@ -232,7 +232,7 @@ NOTES:
   1. Initializes the bitmap_description and class_values for each band to NULL
      and sets the nbits, nclass, ncover to 0.
 ******************************************************************************/
-int allocate_band_metadata
+int allocate_ard_band_metadata
 (
     Ard_tile_meta_t *tile_meta,   /* I: pointer to tile-specific metadata,
                                         NULL if initializing scene metadata */
@@ -242,7 +242,7 @@ int allocate_band_metadata
                          scene-specific band field */
 )
 {
-    char FUNC_NAME[] = "allocate_band_metadata";   /* function name */
+    char FUNC_NAME[] = "allocate_ard_band_metadata";   /* function name */
     char errmsg[STR_SIZE];          /* error message */
     Ard_band_meta_t *bmeta = NULL;  /* pointer to array of bands metadata in
                                        the tile-specific or scene-specific
@@ -317,7 +317,7 @@ int allocate_band_metadata
 
 
 /******************************************************************************
-MODULE:  allocate_class_metadata
+MODULE:  allocate_ard_class_metadata
 
 PURPOSE:  Allocates memory in the ARD band metadata structure for nclasses.
 
@@ -330,14 +330,14 @@ SUCCESS         Successfully allocated memory
 
 NOTES:
 ******************************************************************************/
-int allocate_class_metadata
+int allocate_ard_class_metadata
 (
     Ard_band_meta_t *band_meta,   /* I: pointer to band metadata structure */
     int nclass                    /* I: number of classes to allocate for the
                                         band metadata */
 )
 {
-    char FUNC_NAME[] = "allocate_class_metadata";   /* function name */
+    char FUNC_NAME[] = "allocate_ard_class_metadata";   /* function name */
     char errmsg[STR_SIZE];        /* error message */
 
     /* Allocate the number of classes to nclass and the associated class_values
@@ -357,7 +357,7 @@ int allocate_class_metadata
 
 
 /******************************************************************************
-MODULE:  allocate_bitmap_metadata
+MODULE:  allocate_ard_bitmap_metadata
 
 PURPOSE:  Allocates memory in the ARD band metadata structure for nbits.
 
@@ -370,14 +370,14 @@ SUCCESS         Successfully allocated memory
 
 NOTES:
 ******************************************************************************/
-int allocate_bitmap_metadata
+int allocate_ard_bitmap_metadata
 (
     Ard_band_meta_t *band_meta,   /* I: pointer to band metadata structure */
     int nbits                     /* I: number of bits to allocate for the
                                         bitmap metadata */
 )
 {
-    char FUNC_NAME[] = "allocate_bitmap_metadata";   /* function name */
+    char FUNC_NAME[] = "allocate_ard_bitmap_metadata";   /* function name */
     char errmsg[STR_SIZE];        /* error message */
     int i;                        /* looping variable */
 
