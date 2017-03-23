@@ -238,7 +238,7 @@ typedef struct
 
 
 /* Prototypes */
-int validate_xml_file
+int validate_ard_xml_file
 (
     char *meta_file           /* I: name of metadata file to be validated */
 );

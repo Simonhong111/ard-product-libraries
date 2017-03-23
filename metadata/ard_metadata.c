@@ -33,12 +33,12 @@ SUCCESS         XML validates
 
 NOTES:
 ******************************************************************************/
-int validate_xml_file
+int validate_ard_xml_file
 (
     char *meta_file           /* I: name of metadata file to be validated */
 )
 {
-    char FUNC_NAME[] = "validate_xml_file";   /* function name */
+    char FUNC_NAME[] = "validate_ard_xml_file";   /* function name */
     char errmsg[STR_SIZE];        /* error message */
     char *schema_file = NULL;     /* name of schema file or URL to be validated
                                      against */

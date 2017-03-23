@@ -170,7 +170,7 @@ int main (int argc, char** argv)
     printf ("TEST parsing and re-writing of XML file %s\n", xml_infile);
 
     /* Validate the input metadata file */
-    if (validate_xml_file (xml_infile) != SUCCESS)
+    if (validate_ard_xml_file (xml_infile) != SUCCESS)
     {  /* Error messages already written */
         return (ERROR);
     }
