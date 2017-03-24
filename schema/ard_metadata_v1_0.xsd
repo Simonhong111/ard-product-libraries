@@ -445,6 +445,8 @@ elementFormDefault="qualified">
               <xs:complexType>
                 <xs:sequence>
                   <xs:element ref="data_provider"/>
+                  <xs:element ref="satellite"/>
+                  <xs:element ref="instrument"/>
                   <xs:element ref="acquisition_date"/>
                   <xs:element ref="product_id"/>
                   <xs:element ref="production_date"/>

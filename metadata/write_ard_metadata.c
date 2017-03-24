@@ -368,6 +368,8 @@ int write_ard_metadata
     fprintf (fptr,
         "    <global_metadata>\n"
         "        <data_provider>%s</data_provider>\n"
+        "        <satellite>%s</satellite>\n"
+        "        <instrument>%s</instrument>\n"
         "        <acquisition_date>%s</acquisition_date>\n"
         "        <product_id>%s</product_id>\n"
         "        <production_date>%s</production_date>\n"
@@ -377,7 +379,8 @@ int write_ard_metadata
         "            <north>%lf</north>\n"
         "            <south>%lf</south>\n"
         "        </bounding_coordinates>\n",
-        tile_gmeta->data_provider, tile_gmeta->acquisition_date,
+        tile_gmeta->data_provider, tile_gmeta->satellite,
+        tile_gmeta->instrument, tile_gmeta->acquisition_date,
         tile_gmeta->product_id, tile_gmeta->production_date,
         tile_gmeta->bounding_coords[ARD_WEST],
         tile_gmeta->bounding_coords[ARD_EAST],

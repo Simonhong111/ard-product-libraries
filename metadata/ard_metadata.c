@@ -159,6 +159,8 @@ void init_ard_metadata_struct
     /* Initialize the tile-based global metadata values to fill for use by the
        write metadata routines */
     strcpy (tile_gmeta->data_provider, ARD_STRING_META_FILL);
+    strcpy (tile_gmeta->satellite, ARD_STRING_META_FILL);
+    strcpy (tile_gmeta->instrument, ARD_STRING_META_FILL);
     strcpy (tile_gmeta->acquisition_date, ARD_STRING_META_FILL);
     strcpy (tile_gmeta->product_id, ARD_STRING_META_FILL);
     strcpy (tile_gmeta->production_date, ARD_STRING_META_FILL);

@@ -134,6 +134,10 @@ typedef struct
 typedef struct
 {
     char data_provider[STR_SIZE]; /* name of the original data provider */
+    char satellite[STR_SIZE];     /* name of the satellite (LANDSAT_4,
+                                     LANDSAT_5, LANDSAT_7, LANDSAT_8) */
+    char instrument[STR_SIZE];    /* name of instrument (MSS, TM, ETM+,
+                                     OLI/TIRS, AQUA, TERRA, ...) */
     char acquisition_date[STR_SIZE]; /* date of scene acquisition (yyyy-mm-dd)*/
     char product_id[STR_SIZE];       /* product ID */
     char production_date[STR_SIZE];  /* date the tile was processed */

@@ -1361,6 +1361,50 @@ int add_global_tile_metadata
             return (ERROR);
         }
     }
+    else if (xmlStrEqual (cur_node->name, (const xmlChar *) "satellite"))
+    {
+        /* Expect the child node to be a text node containing the value of
+           this field */
+        if (child_node == NULL || child_node->type != XML_TEXT_NODE)
+        {
+            sprintf (errmsg, "Processing global_metadata element: %s.",
+                cur_node->name);
+            ard_error_handler (true, FUNC_NAME, errmsg);
+            return (ERROR);
+        }
+
+        /* Copy the content of the child node into the value for this field */
+        count = snprintf (gmeta->satellite, sizeof (gmeta->satellite), "%s",
+            (const char *) child_node->content);
+        if (count < 0 || count >= sizeof (gmeta->satellite))
+        {
+            sprintf (errmsg, "Overflow of gmeta->satellite string");
+            ard_error_handler (true, FUNC_NAME, errmsg);
+            return (ERROR);
+        }
+    }
+    else if (xmlStrEqual (cur_node->name, (const xmlChar *) "instrument"))
+    {
+        /* Expect the child node to be a text node containing the value of
+           this field */
+        if (child_node == NULL || child_node->type != XML_TEXT_NODE)
+        {
+            sprintf (errmsg, "Processing global_metadata element: %s.",
+                cur_node->name);
+            ard_error_handler (true, FUNC_NAME, errmsg);
+            return (ERROR);
+        }
+
+        /* Copy the content of the child node into the value for this field */
+        count = snprintf (gmeta->instrument, sizeof (gmeta->instrument), "%s",
+            (const char *) child_node->content);
+        if (count < 0 || count >= sizeof (gmeta->instrument))
+        {
+            sprintf (errmsg, "Overflow of gmeta->instrument string");
+            ard_error_handler (true, FUNC_NAME, errmsg);
+            return (ERROR);
+        }
+    }
     else if (xmlStrEqual (cur_node->name, (const xmlChar *) "acquisition_date"))
     {
         /* Expect the child node to be a text node containing the value of
