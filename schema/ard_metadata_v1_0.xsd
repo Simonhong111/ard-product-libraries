@@ -101,7 +101,6 @@ elementFormDefault="qualified">
     <xs:enumeration value="UTM"/>
     <xs:enumeration value="PS"/>
     <xs:enumeration value="AEA"/>
-    <xs:enumeration value="ALBERS"/>
     <xs:enumeration value="SIN"/>
     <!-- Additional projection types can/will be added as needed -->
   </xs:restriction>
@@ -118,7 +117,6 @@ elementFormDefault="qualified">
 
 <xs:simpleType name="gridOriginType">
   <xs:restriction base="xs:string">
-    <xs:enumeration value="UL"/>
     <xs:enumeration value="CORNER"/>
     <xs:enumeration value="CENTER"/>
     <!-- Additional origin types can be added if needed -->

@@ -91,6 +91,9 @@ int append_ard_tile_bands_metadata
         "        <data_provider>%s</data_provider>\n"
         "        <satellite>%s</satellite>\n"
         "        <instrument>%s</instrument>\n"
+        "        <level1_collection>%s</level1_collection>\n"
+        "        <ard_version>%s</ard_version>\n"
+        "        <region>%s</region>\n"
         "        <acquisition_date>%s</acquisition_date>\n"
         "        <product_id>%s</product_id>\n"
         "        <production_date>%s</production_date>\n"
@@ -101,8 +104,10 @@ int append_ard_tile_bands_metadata
         "            <south>%lf</south>\n"
         "        </bounding_coordinates>\n",
         tile_gmeta->data_provider, tile_gmeta->satellite,
-        tile_gmeta->instrument, tile_gmeta->acquisition_date,
-        tile_gmeta->product_id, tile_gmeta->production_date,
+        tile_gmeta->instrument, tile_gmeta->level1_collection,
+        tile_gmeta->ard_version, tile_gmeta->region,
+        tile_gmeta->acquisition_date, tile_gmeta->product_id,
+        tile_gmeta->production_date,
         tile_gmeta->bounding_coords[ARD_WEST],
         tile_gmeta->bounding_coords[ARD_EAST],
         tile_gmeta->bounding_coords[ARD_NORTH],
@@ -199,22 +204,30 @@ int append_ard_tile_bands_metadata
             "        <request_id>%s</request_id>\n"
             "        <scene_id>%s</scene_id>\n"
             "        <product_id>%s</product_id>\n"
-            "        <elevation_source>%s</elevation_source>\n"
-            "        <sensor_mode>%s</sensor_mode>\n"
-            "        <ephemeris_type>%s</ephemeris_type>\n"
+            "        <elevation_source>%s</elevation_source>\n",
+            scene_gmeta->data_provider, scene_gmeta->satellite,
+            scene_gmeta->instrument, scene_gmeta->acquisition_date,
+            scene_gmeta->scene_center_time, scene_gmeta->level1_production_date,
+            scene_gmeta->wrs_system, scene_gmeta->wrs_path,
+            scene_gmeta->wrs_row, scene_gmeta->request_id,
+            scene_gmeta->scene_id, scene_gmeta->product_id, myelev);
+
+        if (strcmp (mysensor, "undefined"))
+            fprintf (fptr,
+                "        <sensor_mode>%s</sensor_mode>\n", mysensor);
+
+        if (strcmp (myephem, "undefined"))
+            fprintf (fptr,
+                "        <ephemeris_type>%s</ephemeris_type>\n", myephem);
+
+        fprintf (fptr,
             "        <cpf_name>%s</cpf_name>\n"
             "        <lpgs_metadata_file>%s</lpgs_metadata_file>\n"
             "        <geometric_rmse_model>%f</geometric_rmse_model>\n"
             "        <geometric_rmse_model_x>%f</geometric_rmse_model_x>\n"
             "        <geometric_rmse_model_y>%f</geometric_rmse_model_y>\n"
             "    </global_metadata>\n\n",
-            scene_gmeta->data_provider, scene_gmeta->satellite,
-            scene_gmeta->instrument, scene_gmeta->acquisition_date,
-            scene_gmeta->scene_center_time, scene_gmeta->level1_production_date,
-            scene_gmeta->wrs_system, scene_gmeta->wrs_path,
-            scene_gmeta->wrs_row, scene_gmeta->request_id,
-            scene_gmeta->scene_id, scene_gmeta->product_id, myelev, mysensor,
-            myephem, scene_gmeta->cpf_name, scene_gmeta->lpgs_metadata_file,
+            scene_gmeta->cpf_name, scene_gmeta->lpgs_metadata_file,
             scene_gmeta->geometric_rmse_model,
             scene_gmeta->geometric_rmse_model_x,
             scene_gmeta->geometric_rmse_model_y);

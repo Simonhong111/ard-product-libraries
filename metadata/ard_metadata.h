@@ -104,7 +104,7 @@ typedef struct
                              for multi-res products) */
     double lr_corner[2];  /* projection LR x, y (store center of the pixel
                              for multi-res products) */
-    char grid_origin[STR_SIZE];  /* origin of the gridded data (UL, CENTER) */
+    char grid_origin[STR_SIZE];  /* origin of gridded data (CORNER, CENTER) */
 
     /* UTM projection parameters */
     int utm_zone;         /* UTM zone; use a negative number if this is a

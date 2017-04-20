@@ -22,7 +22,7 @@ NOTES:
 /******************************************************************************
 MODULE:  add_global_ard_metadata_proj_info_albers
 
-PURPOSE: Add the ALBERS projection elements node to the global metadata
+PURPOSE: Add the AEA projection elements node to the global metadata
 projection information structure.
 
 RETURN VALUE:
@@ -50,7 +50,7 @@ int add_global_ard_metadata_proj_info_albers
        parameters type */
     if (proj_info->proj_type != ARD_GCTP_ALBERS_PROJ)
     {
-        sprintf (errmsg, "Projection type is not ALBERS so the fact that "
+        sprintf (errmsg, "Projection type is not AEA so the fact that "
             "albers_proj_params exists is a mismatch in the "
             "projection_information.");
         ard_error_handler (true, FUNC_NAME, errmsg);
@@ -585,7 +585,7 @@ int add_global_ard_metadata_proj_info
                 proj_info->proj_type = ARD_GCTP_UTM_PROJ;
             else if (xmlStrEqual (attr_val, (const xmlChar *) "PS"))
                 proj_info->proj_type = ARD_GCTP_PS_PROJ;
-            else if (xmlStrEqual (attr_val, (const xmlChar *) "ALBERS"))
+            else if (xmlStrEqual (attr_val, (const xmlChar *) "AEA"))
                 proj_info->proj_type = ARD_GCTP_ALBERS_PROJ;
             else if (xmlStrEqual (attr_val, (const xmlChar *) "SIN"))
                 proj_info->proj_type = ARD_GCTP_SIN_PROJ;

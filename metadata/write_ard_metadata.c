@@ -41,7 +41,7 @@ void write_ard_proj_metadata
     {
         case ARD_GCTP_GEO_PROJ: strcpy (myproj, "GEO"); break;
         case ARD_GCTP_UTM_PROJ: strcpy (myproj, "UTM"); break;
-        case ARD_GCTP_ALBERS_PROJ: strcpy (myproj, "ALBERS"); break;
+        case ARD_GCTP_ALBERS_PROJ: strcpy (myproj, "AEA"); break;
         case ARD_GCTP_PS_PROJ: strcpy (myproj, "PS"); break;
         case ARD_GCTP_SIN_PROJ: strcpy (myproj, "SIN"); break;
         default: strcpy (myproj, "undefined"); break;
@@ -470,22 +470,30 @@ int write_ard_metadata
             "        <request_id>%s</request_id>\n"
             "        <scene_id>%s</scene_id>\n"
             "        <product_id>%s</product_id>\n"
-            "        <elevation_source>%s</elevation_source>\n"
-            "        <sensor_mode>%s</sensor_mode>\n"
-            "        <ephemeris_type>%s</ephemeris_type>\n"
+            "        <elevation_source>%s</elevation_source>\n",
+            scene_gmeta->data_provider, scene_gmeta->satellite,
+            scene_gmeta->instrument, scene_gmeta->acquisition_date,
+            scene_gmeta->scene_center_time, scene_gmeta->level1_production_date,
+            scene_gmeta->wrs_system, scene_gmeta->wrs_path,
+            scene_gmeta->wrs_row, scene_gmeta->request_id,
+            scene_gmeta->scene_id, scene_gmeta->product_id, myelev);
+
+        if (strcmp (mysensor, "undefined"))
+            fprintf (fptr,
+                "        <sensor_mode>%s</sensor_mode>\n", mysensor);
+
+        if (strcmp (myephem, "undefined"))
+            fprintf (fptr,
+                "        <ephemeris_type>%s</ephemeris_type>\n", myephem);
+
+        fprintf (fptr,
             "        <cpf_name>%s</cpf_name>\n"
             "        <lpgs_metadata_file>%s</lpgs_metadata_file>\n"
             "        <geometric_rmse_model>%f</geometric_rmse_model>\n"
             "        <geometric_rmse_model_x>%f</geometric_rmse_model_x>\n"
             "        <geometric_rmse_model_y>%f</geometric_rmse_model_y>\n"
             "    </global_metadata>\n\n",
-            scene_gmeta->data_provider, scene_gmeta->satellite,
-            scene_gmeta->instrument, scene_gmeta->acquisition_date,
-            scene_gmeta->scene_center_time, scene_gmeta->level1_production_date,
-            scene_gmeta->wrs_system, scene_gmeta->wrs_path,
-            scene_gmeta->wrs_row, scene_gmeta->request_id,
-            scene_gmeta->scene_id, scene_gmeta->product_id, myelev, mysensor,
-            myephem, scene_gmeta->cpf_name, scene_gmeta->lpgs_metadata_file,
+            scene_gmeta->cpf_name, scene_gmeta->lpgs_metadata_file,
             scene_gmeta->geometric_rmse_model,
             scene_gmeta->geometric_rmse_model_x,
             scene_gmeta->geometric_rmse_model_y);
