@@ -138,6 +138,9 @@ typedef struct
                                      LANDSAT_5, LANDSAT_7, LANDSAT_8) */
     char instrument[STR_SIZE];    /* name of instrument (MSS, TM, ETM+,
                                      OLI/TIRS, AQUA, TERRA, ...) */
+    char level1_collection[STR_SIZE]; /* Level-1 collection number */
+    char ard_version[STR_SIZE];   /* ARD version number */
+    char region[STR_SIZE];        /* ARD region - CU, HI, AK, etc. */
     char acquisition_date[STR_SIZE]; /* date of scene acquisition (yyyy-mm-dd)*/
     char product_id[STR_SIZE];       /* product ID */
     char production_date[STR_SIZE];  /* date the tile was processed */
@@ -245,6 +248,12 @@ typedef struct
 int validate_ard_xml_file
 (
     char *meta_file           /* I: name of metadata file to be validated */
+);
+
+void init_ard_tile_metadata_struct
+(
+    Ard_tile_meta_t *tile_meta /* I: pointer to ARD tile_metadata structure to
+                                     be initialized */
 );
 
 void init_ard_metadata_struct

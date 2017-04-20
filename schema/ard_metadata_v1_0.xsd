@@ -78,6 +78,14 @@ elementFormDefault="qualified">
   </xs:restriction>
 </xs:simpleType>
 
+<xs:simpleType name="regionType">
+  <xs:restriction base="xs:string">
+    <xs:enumeration value="CU"/>  <!-- conterminous US -->
+    <xs:enumeration value="AK"/>
+    <xs:enumeration value="HI"/>
+  </xs:restriction>
+</xs:simpleType>
+
 <xs:simpleType name="cornerType">
   <xs:restriction base="xs:string">
     <xs:enumeration value="UL"/>
@@ -92,6 +100,7 @@ elementFormDefault="qualified">
     <xs:enumeration value="GEO"/>
     <xs:enumeration value="UTM"/>
     <xs:enumeration value="PS"/>
+    <xs:enumeration value="AEA"/>
     <xs:enumeration value="ALBERS"/>
     <xs:enumeration value="SIN"/>
     <!-- Additional projection types can/will be added as needed -->
@@ -110,6 +119,7 @@ elementFormDefault="qualified">
 <xs:simpleType name="gridOriginType">
   <xs:restriction base="xs:string">
     <xs:enumeration value="UL"/>
+    <xs:enumeration value="CORNER"/>
     <xs:enumeration value="CENTER"/>
     <!-- Additional origin types can be added if needed -->
   </xs:restriction>
@@ -191,6 +201,9 @@ elementFormDefault="qualified">
 <xs:element name="data_provider" type="xs:string"/>
 <xs:element name="satellite" type="xs:string"/>
 <xs:element name="instrument" type="xs:string"/>
+<xs:element name="level1_collection" type="xs:string"/>
+<xs:element name="ard_version" type="xs:string"/>
+<xs:element name="region" type="regionType"/>
 <xs:element name="acquisition_date" type="xs:date"/>
 <xs:element name="scene_center_time" type="xs:time"/>
 <xs:element name="level1_production_date" type="xs:dateTime"/>
@@ -447,6 +460,9 @@ elementFormDefault="qualified">
                   <xs:element ref="data_provider"/>
                   <xs:element ref="satellite"/>
                   <xs:element ref="instrument"/>
+                  <xs:element ref="level1_collection"/>
+                  <xs:element ref="ard_version"/>
+                  <xs:element ref="region"/>
                   <xs:element ref="acquisition_date"/>
                   <xs:element ref="product_id"/>
                   <xs:element ref="production_date"/>
@@ -497,8 +513,8 @@ elementFormDefault="qualified">
                   <xs:element ref="scene_id"/>
                   <xs:element ref="product_id"/>
                   <xs:element ref="elevation_source"/>
-                  <xs:element ref="sensor_mode"/>
-                  <xs:element ref="ephemeris_type"/>
+                  <xs:element ref="sensor_mode" minOccurs="0"/>
+                  <xs:element ref="ephemeris_type" minOccurs="0"/>
                   <xs:element ref="cpf_name"/>
                   <xs:element ref="lpgs_metadata_file"/>
                   <xs:element ref="geometric_rmse_model"/>

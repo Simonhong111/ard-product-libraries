@@ -1405,6 +1405,74 @@ int add_global_tile_metadata
             return (ERROR);
         }
     }
+    else if (xmlStrEqual (cur_node->name,
+        (const xmlChar *) "level1_collection"))
+    {
+        /* Expect the child node to be a text node containing the value of
+           this field */
+        if (child_node == NULL || child_node->type != XML_TEXT_NODE)
+        {
+            sprintf (errmsg, "Processing global_metadata element: %s.",
+                cur_node->name);
+            ard_error_handler (true, FUNC_NAME, errmsg);
+            return (ERROR);
+        }
+
+        /* Copy the content of the child node into the value for this field */
+        count = snprintf (gmeta->level1_collection,
+            sizeof (gmeta->level1_collection), "%s",
+            (const char *) child_node->content);
+        if (count < 0 || count >= sizeof (gmeta->level1_collection))
+        {
+            sprintf (errmsg, "Overflow of gmeta->level1_collection string");
+            ard_error_handler (true, FUNC_NAME, errmsg);
+            return (ERROR);
+        }
+    }
+    else if (xmlStrEqual (cur_node->name, (const xmlChar *) "ard_version"))
+    {
+        /* Expect the child node to be a text node containing the value of
+           this field */
+        if (child_node == NULL || child_node->type != XML_TEXT_NODE)
+        {
+            sprintf (errmsg, "Processing global_metadata element: %s.",
+                cur_node->name);
+            ard_error_handler (true, FUNC_NAME, errmsg);
+            return (ERROR);
+        }
+
+        /* Copy the content of the child node into the value for this field */
+        count = snprintf (gmeta->ard_version, sizeof (gmeta->ard_version), "%s",
+            (const char *) child_node->content);
+        if (count < 0 || count >= sizeof (gmeta->ard_version))
+        {
+            sprintf (errmsg, "Overflow of gmeta->ard_version string");
+            ard_error_handler (true, FUNC_NAME, errmsg);
+            return (ERROR);
+        }
+    }
+    else if (xmlStrEqual (cur_node->name, (const xmlChar *) "region"))
+    {
+        /* Expect the child node to be a text node containing the value of
+           this field */
+        if (child_node == NULL || child_node->type != XML_TEXT_NODE)
+        {
+            sprintf (errmsg, "Processing global_metadata element: %s.",
+                cur_node->name);
+            ard_error_handler (true, FUNC_NAME, errmsg);
+            return (ERROR);
+        }
+
+        /* Copy the content of the child node into the value for this field */
+        count = snprintf (gmeta->region, sizeof (gmeta->region), "%s",
+            (const char *) child_node->content);
+        if (count < 0 || count >= sizeof (gmeta->region))
+        {
+            sprintf (errmsg, "Overflow of gmeta->region string");
+            ard_error_handler (true, FUNC_NAME, errmsg);
+            return (ERROR);
+        }
+    }
     else if (xmlStrEqual (cur_node->name, (const xmlChar *) "acquisition_date"))
     {
         /* Expect the child node to be a text node containing the value of

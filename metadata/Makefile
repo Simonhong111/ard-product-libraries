@@ -19,11 +19,12 @@ EXTRA = -Wall $(EXTRA_OPTIONS)
 
 # Define the include files
 INC = ard_metadata.h append_ard_tile_bands_metadata.h parse_ard_metadata.h \
-      write_ard_metadata.h meta_stack.h ard_gctp_defines.h
+      write_ard_metadata.h meta_stack.h ard_gctp_defines.h ard_envi_header.h
 
 # Define the source code and object files
 SRC = \
       append_ard_tile_bands_metadata.c  \
+      ard_envi_header.c  \
       ard_metadata.c  \
       meta_stack.c \
       parse_ard_metadata.c \

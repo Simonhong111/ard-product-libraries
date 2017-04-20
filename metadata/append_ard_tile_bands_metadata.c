@@ -1,5 +1,5 @@
 /*****************************************************************************
-FILE: append_tile_bands_ard_metadata
+FILE: append_ard_tile_bands_metadata
   
 PURPOSE: Contains functions for writing/appending bands to the tile metadata
 within the ARD metadata file.
@@ -20,7 +20,7 @@ NOTES:
 #include "write_ard_metadata.h"
 
 /******************************************************************************
-MODULE:  append_tile_bands_ard_metadata
+MODULE:  append_ard_tile_bands_metadata
 
 PURPOSE: Write the ARD metadata structure to the specified XML metadata file
 and append the specified bands to the tile_metadata, after the existing bands
@@ -40,7 +40,7 @@ NOTES:
   3. It is recommended that validate_meta be used after writing the XML file
      to make sure the new file is valid against the ARD schema.
 ******************************************************************************/
-int append_tile_bands_ard_metadata
+int append_ard_tile_bands_metadata
 (
     Ard_meta_t *ard_meta,      /* I: original ARD metadata structure to be
                                      appended to */

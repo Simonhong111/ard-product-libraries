@@ -125,6 +125,59 @@ printf ("DEBUG: Using schema_file for validation ... %s\n", schema_file);
 
 
 /******************************************************************************
+MODULE:  init_ard_tile_metadata_struct
+
+PURPOSE:  Initializes the ARD tile_metadata structure.  Sets the number of bands
+to 0.  Assigns field values to fill to make it easier to detect if the values
+were parsed from the input metadata file or assigned by the user.
+
+RETURN VALUE:
+Type = None
+
+NOTES:
+******************************************************************************/
+void init_ard_tile_metadata_struct
+(
+    Ard_tile_meta_t *tile_meta /* I: pointer to ARD tile_metadata structure to
+                                     be initialized */
+)
+{
+    Ard_global_tile_meta_t *tile_gmeta = &tile_meta->tile_global;
+                                 /* pointer to tile global metadata structure */
+
+    /* Initialze the number of bands for the tile-based metadata */
+    tile_meta->nbands = 0;
+    tile_meta->band = NULL;
+
+    /* Initialize the tile-based global metadata values to fill for use by the
+       write metadata routines */
+    strcpy (tile_gmeta->data_provider, ARD_STRING_META_FILL);
+    strcpy (tile_gmeta->satellite, ARD_STRING_META_FILL);
+    strcpy (tile_gmeta->instrument, ARD_STRING_META_FILL);
+    strcpy (tile_gmeta->level1_collection, ARD_STRING_META_FILL);
+    strcpy (tile_gmeta->ard_version, ARD_STRING_META_FILL);
+    strcpy (tile_gmeta->region, ARD_STRING_META_FILL);
+    strcpy (tile_gmeta->acquisition_date, ARD_STRING_META_FILL);
+    strcpy (tile_gmeta->product_id, ARD_STRING_META_FILL);
+    strcpy (tile_gmeta->production_date, ARD_STRING_META_FILL);
+    tile_gmeta->bounding_coords[0] = ARD_FLOAT_META_FILL;
+    tile_gmeta->bounding_coords[1] = ARD_FLOAT_META_FILL;
+    tile_gmeta->bounding_coords[2] = ARD_FLOAT_META_FILL;
+    tile_gmeta->bounding_coords[3] = ARD_FLOAT_META_FILL;
+    tile_gmeta->proj_info.proj_type = ARD_INT_META_FILL;
+    tile_gmeta->proj_info.datum_type = ARD_NODATUM;
+    tile_gmeta->orientation_angle = ARD_FLOAT_META_FILL;
+    tile_gmeta->htile = ARD_INT_META_FILL;
+    tile_gmeta->vtile = ARD_INT_META_FILL;
+    tile_gmeta->scene_count = ARD_INT_META_FILL;
+    tile_gmeta->cloud_cover = ARD_FLOAT_META_FILL;
+    tile_gmeta->cloud_shadow = ARD_FLOAT_META_FILL;
+    tile_gmeta->snow_ice = ARD_FLOAT_META_FILL;
+    tile_gmeta->fill = ARD_FLOAT_META_FILL;
+}
+
+
+/******************************************************************************
 MODULE:  init_ard_metadata_struct
 
 PURPOSE:  Initializes the ARD metadata structure, particularly the pointers
@@ -146,38 +199,12 @@ void init_ard_metadata_struct
     int i;                       /* looping variable */
     Ard_tile_meta_t *tile_meta = &ard_meta->tile_meta;
                                  /* pointer to the tile metadata structure */
-    Ard_global_tile_meta_t *tile_gmeta = &tile_meta->tile_global;
-                                 /* pointer to tile global metadata structure */
     Ard_scene_meta_t *scene_meta = NULL; /* ptr to scene metadata structure */
     Ard_global_scene_meta_t *scene_gmeta = NULL;
                                  /* ptr to scene global metadata structure */
 
-    /* Initialze the number of bands for the tile-based metadata */
-    tile_meta->nbands = 0;
-    tile_meta->band = NULL;
-
-    /* Initialize the tile-based global metadata values to fill for use by the
-       write metadata routines */
-    strcpy (tile_gmeta->data_provider, ARD_STRING_META_FILL);
-    strcpy (tile_gmeta->satellite, ARD_STRING_META_FILL);
-    strcpy (tile_gmeta->instrument, ARD_STRING_META_FILL);
-    strcpy (tile_gmeta->acquisition_date, ARD_STRING_META_FILL);
-    strcpy (tile_gmeta->product_id, ARD_STRING_META_FILL);
-    strcpy (tile_gmeta->production_date, ARD_STRING_META_FILL);
-    tile_gmeta->bounding_coords[0] = ARD_FLOAT_META_FILL;
-    tile_gmeta->bounding_coords[1] = ARD_FLOAT_META_FILL;
-    tile_gmeta->bounding_coords[2] = ARD_FLOAT_META_FILL;
-    tile_gmeta->bounding_coords[3] = ARD_FLOAT_META_FILL;
-    tile_gmeta->proj_info.proj_type = ARD_INT_META_FILL;
-    tile_gmeta->proj_info.datum_type = ARD_NODATUM;
-    tile_gmeta->orientation_angle = ARD_FLOAT_META_FILL;
-    tile_gmeta->htile = ARD_INT_META_FILL;
-    tile_gmeta->vtile = ARD_INT_META_FILL;
-    tile_gmeta->scene_count = ARD_INT_META_FILL;
-    tile_gmeta->cloud_cover = ARD_FLOAT_META_FILL;
-    tile_gmeta->cloud_shadow = ARD_FLOAT_META_FILL;
-    tile_gmeta->snow_ice = ARD_FLOAT_META_FILL;
-    tile_gmeta->fill = ARD_FLOAT_META_FILL;
+    /* Initialize the tile_metadata */
+    init_ard_tile_metadata_struct (tile_meta);
 
     /* Initialize the number of scenes */
     ard_meta->nscenes = 0;

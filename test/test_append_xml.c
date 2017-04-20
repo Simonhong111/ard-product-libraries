@@ -213,7 +213,7 @@ int main (int argc, char** argv)
     /* Write the metadata to a new output XML file, appending the additional
        bands for the tile_metadata */
     printf ("Writing/appending ARD metadata to %s\n", xml_outfile);
-    if (append_tile_bands_ard_metadata (&ard_meta, nbands_append,
+    if (append_ard_tile_bands_metadata (&ard_meta, nbands_append,
         new_tile_meta.band, xml_outfile) != SUCCESS)
     {  /* Error messages already written */
         return (ERROR);

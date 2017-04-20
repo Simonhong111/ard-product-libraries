@@ -21,7 +21,7 @@ NOTES:
 #include "ard_metadata.h"
 
 
-int append_tile_bands_ard_metadata
+int append_ard_tile_bands_metadata
 (
     Ard_meta_t *ard_meta,      /* I: original ARD metadata structure to be
                                      appended to */
