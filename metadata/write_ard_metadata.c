@@ -488,15 +488,35 @@ int write_ard_metadata
 
         fprintf (fptr,
             "        <cpf_name>%s</cpf_name>\n"
-            "        <lpgs_metadata_file>%s</lpgs_metadata_file>\n"
-            "        <geometric_rmse_model>%f</geometric_rmse_model>\n"
-            "        <geometric_rmse_model_x>%f</geometric_rmse_model_x>\n"
-            "        <geometric_rmse_model_y>%f</geometric_rmse_model_y>\n"
-            "    </global_metadata>\n\n",
-            scene_gmeta->cpf_name, scene_gmeta->lpgs_metadata_file,
-            scene_gmeta->geometric_rmse_model,
-            scene_gmeta->geometric_rmse_model_x,
-            scene_gmeta->geometric_rmse_model_y);
+            "        <lpgs_metadata_file>%s</lpgs_metadata_file>\n",
+            scene_gmeta->cpf_name, scene_gmeta->lpgs_metadata_file);
+
+        if (fabs (scene_gmeta->geometric_rmse_model - ARD_FLOAT_META_FILL) >
+            ARD_EPSILON)
+        {
+            fprintf (fptr,
+                "        <geometric_rmse_model>%f</geometric_rmse_model>\n",
+                scene_gmeta->geometric_rmse_model);
+        }
+
+        if (fabs (scene_gmeta->geometric_rmse_model_x - ARD_FLOAT_META_FILL) >
+            ARD_EPSILON)
+        {
+            fprintf (fptr,
+                "        <geometric_rmse_model_x>%f</geometric_rmse_model_x>\n",
+                scene_gmeta->geometric_rmse_model_x);
+        }
+
+        if (fabs (scene_gmeta->geometric_rmse_model_y - ARD_FLOAT_META_FILL) >
+            ARD_EPSILON)
+        {
+            fprintf (fptr,
+                "        <geometric_rmse_model_y>%f</geometric_rmse_model_y>\n",
+                scene_gmeta->geometric_rmse_model_y);
+        }
+
+        fprintf (fptr,
+            "    </global_metadata>\n\n");
 
         /* Write the scene-based band metadata and close the bands */
         write_ard_band_metadata (ard_meta->scene_meta[i].nbands,
