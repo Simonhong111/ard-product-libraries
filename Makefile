@@ -17,13 +17,13 @@ all: executables
 libraries:
 	@for dir in $(LIBDIRS); do \
         echo "make all in $$dir..."; \
-        (cd $$dir; $(MAKE)); done
+        ($(MAKE) -C $$dir || exit 1); done
 
 #-----------------------------------------------------------------------------
 executables: libraries
 	@for dir in $(EXEDIRS); do \
         echo "make all in $$dir..."; \
-        (cd $$dir; $(MAKE)); done
+        ($(MAKE) -C $$dir || exit 1); done
 
 #-----------------------------------------------------------------------------
 install-headers:
@@ -32,7 +32,7 @@ install-headers:
 ifneq ($(ARDINC), $(CURDIR)/include)
 	@for dir in $(LIBDIRS); do \
         echo "installing all in $$dir..."; \
-        (cd $$dir; $(MAKE) install-headers); done
+        ($(MAKE) -C $$dir install-headers || exit 1); done
 else
 	echo "$(ARDINC) is the same as the include directory. Include files already installed."
 endif
@@ -44,7 +44,7 @@ install-lib: libraries
 ifneq ($(ARDLIB), $(CURDIR)/lib)
 	@for dir in $(LIBDIRS); do \
         echo "installing all in $$dir..."; \
-        (cd $$dir; $(MAKE) install-lib); done
+        ($(MAKE) -C $$dir install-lib || exit 1); done
 else
 	echo "$(ARDLIB) is the same as the lib directory. Libraries already installed."
 endif
@@ -53,12 +53,12 @@ endif
 install-executables: executables
 	@for dir in $(EXEDIRS); do \
         echo "installing all in $$dir..."; \
-        (cd $$dir; $(MAKE) install); done
+        ($(MAKE) -C $$dir install || exit 1); done
 
 #-----------------------------------------------------------------------------
 install-schema:
 	echo "make install in $(DIR_SCHEMA)"; \
-        (cd $(DIR_SCHEMA); $(MAKE) install);
+        ($(MAKE) -C $(DIR_SCHEMA) install || exit 1)
 
 #-----------------------------------------------------------------------------
 install: install-lib install-headers install-executables install-schema
@@ -68,5 +68,5 @@ clean:
 # all directories need to be cleaned
 	@for dir in $(LIBDIRS) $(EXEDIRS); do \
         echo "make clean in $$dir..."; \
-        (cd $$dir; $(MAKE) clean); done
+        ($(MAKE) -C $$dir clean || exit 1); done
 	rm -r include lib

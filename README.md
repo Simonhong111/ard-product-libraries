@@ -1,5 +1,5 @@
-## ARD-PRODUCT-LIBRARIES Version 1.0.0 Release Notes
-Release Date: March 2017
+## ARD-PRODUCT-LIBRARIES Version 1.1.0 Release Notes
+Release Date: June 2017
 
 The ARD product library project contains libraries and tools for working with the ARD XML metadata. It currently supports Landsat 4-8.
 
@@ -10,7 +10,7 @@ ard-product-library source code
 
     git clone https://github.com/USGS-EROS/ard-product-library.git
 
-See git tag [version_1.0.0]
+See git tag [version_1.1.0]
 
 ### Dependencies
   * XML2 libraries -- ftp://xmlsoft.org/libxml2/
@@ -62,4 +62,7 @@ your application or other ARD product libraries may need to be added.
 
 ### Product Guide 
 ## Release Notes
-  * Initial version of this software.
+  * The geometric_rmse_model fields need to be optional due to the fact that
+    some of the MTL files won't have these values available.  The MTL file is
+    used to feed the values in the XML file.
+  * Updated the Makefile to exit and flag any errors that occur.
