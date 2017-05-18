@@ -515,9 +515,9 @@ elementFormDefault="qualified">
                   <xs:element ref="ephemeris_type" minOccurs="0"/>
                   <xs:element ref="cpf_name"/>
                   <xs:element ref="lpgs_metadata_file"/>
-                  <xs:element ref="geometric_rmse_model"/>
-                  <xs:element ref="geometric_rmse_model_x"/>
-                  <xs:element ref="geometric_rmse_model_y"/>
+                  <xs:element ref="geometric_rmse_model" minOccurs="0"/>
+                  <xs:element ref="geometric_rmse_model_x" minOccurs="0"/>
+                  <xs:element ref="geometric_rmse_model_y" minOccurs="0"/>
                 </xs:sequence>
               </xs:complexType>
             </xs:element>
