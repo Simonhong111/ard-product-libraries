@@ -297,7 +297,7 @@ void free_ard_metadata
     Ard_meta_t *ard_meta     /* I: pointer to ARD metadata structure */
 );
 
-void print_element_names
+void print_ard_element_names
 (
     xmlNode *a_node   /* I: pointer to the current node in the tree to start
                             printing */

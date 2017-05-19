@@ -2839,7 +2839,7 @@ int parse_ard_metadata
             ard_error_handler (true, FUNC_NAME, errmsg);
             return (ERROR);
         }
-        //print_element_names (xmlDocGetRootElement (doc));
+        //print_ard_element_names (xmlDocGetRootElement (doc));
 
         /* Parse the XML document into our ARD metadata structure */
         if (parse_ard_xml_into_struct (xmlDocGetRootElement(doc), ard_meta,

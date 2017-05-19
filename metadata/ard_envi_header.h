@@ -22,6 +22,9 @@ NOTES:
 #include "ard_metadata.h"
 #include "ard_gctp_defines.h"
 
+/* Sometimes the ARD header information needs to be included with the ESPA
+   header information */
+#ifndef ENVI_HEADER_H
 /* Defines */
 /* ENVI projection numbers */
 #define ENVI_GEO_PROJ 1
@@ -73,6 +76,7 @@ typedef struct {
     char band_names[MAX_ENVI_BANDS][STR_SIZE];  /* array of band names;
                                size is nbands */
 } Envi_header_t;
+#endif
 
 
 /* Prototypes */

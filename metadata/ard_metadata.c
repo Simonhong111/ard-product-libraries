@@ -497,7 +497,7 @@ void free_ard_metadata
 
 
 /******************************************************************************
-MODULE:  print_element_names
+MODULE:  print_ard_element_names
 
 PURPOSE:  Print the information for the elements in the document tree,
 starting at the node provided.
@@ -507,7 +507,7 @@ RETURN VALUE:  N/A
 NOTES:
   1. Prints to stdout.
 ******************************************************************************/
-void print_element_names
+void print_ard_element_names
 (
     xmlNode *a_node   /* I: pointer to the current node in the tree to start
                             printing */
@@ -563,7 +563,7 @@ void print_element_names
             printf ("   node type: Text, content: %s\n", cur_node->content);
         }
 
-        print_element_names (cur_node->children);
+        print_ard_element_names (cur_node->children);
     }
 }
 
