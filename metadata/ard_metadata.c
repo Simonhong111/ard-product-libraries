@@ -13,7 +13,7 @@ NOTES:
   1. The XML metadata format parsed or written via this library follows the
      ARD metadata format.
      The schema for the ARD metadata format is available via the ARD DFCB or
-     http://espa.cr.usgs.gov/schema/ard/ard_internal_metadata_v1_0.xsd.
+     http://landsat.usgs.gov/ard/ard_metadata_vX_X.xsd
   2. This code relies on the libxml2 library developed for the Gnome project.
 *****************************************************************************/
 #include <sys/stat.h>
@@ -63,7 +63,7 @@ int validate_ard_xml_file
             schema_file = ARD_SCHEMA;
         }
     }
-printf ("DEBUG: Using schema_file for validation ... %s\n", schema_file);
+    printf ("DEBUG: Using schema_file for validation ... %s\n", schema_file);
 
     /* Set up the schema parser and parse the schema file/URL */
     xmlLineNumbersDefault (1);

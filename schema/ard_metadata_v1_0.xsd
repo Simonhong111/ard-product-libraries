@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="ISO-8859-1" ?>
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
-targetNamespace="http://ard.cr.usgs.gov/v1"
-xmlns="http://ard.cr.usgs.gov/v1"
+targetNamespace="http://landsat.usgs.gov/ard/v1"
+xmlns="http://landsat.usgs.gov/ard/v1"
 elementFormDefault="qualified">
 
 <!-- definition of simple types -->
@@ -117,7 +117,7 @@ elementFormDefault="qualified">
 
 <xs:simpleType name="gridOriginType">
   <xs:restriction base="xs:string">
-    <xs:enumeration value="CORNER"/>
+    <xs:enumeration value="UL"/>
     <xs:enumeration value="CENTER"/>
     <!-- Additional origin types can be added if needed -->
   </xs:restriction>
