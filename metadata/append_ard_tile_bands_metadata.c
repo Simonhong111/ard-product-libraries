@@ -13,7 +13,7 @@ NOTES:
   1. The XML metadata format written via this library follows the ARD metadata
      format found in the ARD DFCB.  The schema for the ARD metadata format is
      available at
-     http://landsat.usgs.gov/ard/ard_metadata_vX_X.xsd
+     https://landsat.usgs.gov/ard/ard_metadata_vX_X.xsd
 *****************************************************************************/
 
 #include <math.h>

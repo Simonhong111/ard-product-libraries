@@ -29,9 +29,9 @@ NOTES:
    (i.e. 1.2) */
 #define LIBXML_SCHEMAS_ENABLED
 #define ARD_SCHEMA_VERSION "1.0"
-#define ARD_NS "http://landsat.usgs.gov/ard/v1"
-#define ARD_SCHEMA_LOCATION "http://landsat.usgs.gov/ard/v1"
-#define ARD_SCHEMA "http://landsat.usgs.gov/ard/ard_metadata_v1_0.xsd"
+#define ARD_NS "https://landsat.usgs.gov/ard/v1"
+#define ARD_SCHEMA_LOCATION "https://landsat.usgs.gov/ard/v1"
+#define ARD_SCHEMA "https://landsat.usgs.gov/ard/ard_metadata_v1_0.xsd"
 #define LOCAL_ARD_SCHEMA "/usr/local/ard-product-libraries/schema/ard_metadata_v1_0.xsd"
 
 /* Data types */

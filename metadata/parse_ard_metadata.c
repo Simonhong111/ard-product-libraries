@@ -12,7 +12,7 @@ NOTES:
   1. The XML metadata format parsed or written via this library follows the
      ARD metadata format found in ARD DFCB.
      The schema for the ARD  metadata format is available at
-     http://landsat.usgs.gov/ard/ard_metadata_vX_X.xsd
+     https://landsat.usgs.gov/ard/ard_metadata_vX_X.xsd
   2. This code relies on the libxml2 library developed for the Gnome project.
 *****************************************************************************/
 
