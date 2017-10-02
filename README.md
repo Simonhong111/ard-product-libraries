@@ -1,5 +1,5 @@
-## ARD-PRODUCT-LIBRARIES Version 1.1.2 Release Notes
-Release Date: August 2017
+## ARD-PRODUCT-LIBRARIES Version 1.2.0 Release Notes
+Release Date: November 2017
 
 The ARD product library project contains libraries and tools for working with the ARD XML metadata. It currently supports Landsat 4-8.
 
@@ -10,7 +10,7 @@ ard-product-library source code
 
     git clone https://github.com/USGS-EROS/ard-product-library.git
 
-See git tag [version_1.1.2]
+See git tag [version_1.2.0]
 
 ### Dependencies
   * XML2 libraries -- ftp://xmlsoft.org/libxml2/
@@ -18,11 +18,17 @@ See git tag [version_1.1.2]
   * LZMA libraries -- http://www.7-zip.org/sdk.html
   * SZIP libraries -- http://www.compressconsult.com/szip/
   * ZLIB libraries -- http://www.zlib.net/
+  * TIFF libraries (3.8.2 or most current) -- ftp://ftp.remotesensing.org/pub/libtiff/
+  * GeoTIFF libraries (1.2.5 or most current) -- ftp://ftp.remotesensing.org/pub/geotiff/libgeotiff/
 
 ### Installation
   * Install dependent libraries.  Many of these come standard with the Linux distribution.
   * Set up environment variables.  Can create an environment shell file or add the following to your bash shell.  For C shell, use 'setenv VAR "directory"'.  
   ```
+    export TIFFINC="path_to_TIFF_include_files"
+    export TIFFLIB="path_to_TIFF_libraries"
+    export GEOTIFF_INC="path_to_GEOTIFF_include_files"
+    export GEOTIFF_LIB="path_to_GEOTIFF_libraries"
     export XML2INC="path_to_XML2_include_files"
     export XML2LIB="path_to_XML2_libraries"
     export JBIGINC="path_to_JBIG_include_files"

@@ -11,3 +11,4 @@ test/test_append_xml
 test/test_write_xml
 test/test_parse_xml
 test/test_validate_xml
+test/test_read_ard

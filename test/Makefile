@@ -30,11 +30,14 @@ OBJ3 = $(SRC3:.c=.o)
 SRC4 = test_append_xml.c
 OBJ4 = $(SRC4:.c=.o)
 
+SRC5 = test_read_ard.c
+OBJ5 = $(SRC5:.c=.o)
+
 
 # Define include paths
-INCDIR  = -I. -I../include -I$(XML2INC) -I$(JBIGINC) -I$(ZLIBINC)
-NETCDF_INCDIR = -I. -I../include -I$(XML2INC)
-          
+INCDIR  = -I. -I../include -I$(XML2INC) -I$(TIFFINC) -I$(GEOTIFF_INC)
+# -I$(JBIGINC) -I$(ZLIBINC)
+
 NCFLAGS = $(EXTRA) $(INCDIR)
 
 # Define the object libraries and paths
@@ -72,12 +75,20 @@ LIB4   = \
     -L$(LZMALIB) -llzma \
     $(MATHLIB)
 
+LIB5   = \
+    -L../lib -l_ard_metadata -l_ard_common -l_ard_io \
+    -L$(XML2LIB) -lxml2 \
+    -L$(TIFFLIB) -ltiff \
+    -L$(GEOTIFF_LIB) -lgeotiff \
+    $(MATHLIB)
+
 # Define C executables
 EXE1 = $(SRC1:.c=)
 EXE2 = $(SRC2:.c=)
 EXE3 = $(SRC3:.c=)
 EXE4 = $(SRC4:.c=)
-ALL_EXES = $(EXE1) $(EXE2) $(EXE3) $(EXE4)
+EXE5 = $(SRC5:.c=)
+ALL_EXES = $(EXE1) $(EXE2) $(EXE3) $(EXE4) $(EXE5)
 
 #-----------------------------------------------------------------------------
 all: $(ALL_EXES)
@@ -93,6 +104,9 @@ $(EXE3): $(OBJ3) $(INC)
 
 $(EXE4): $(OBJ4) $(INC)
 	$(CC) $(NCFLAGS) -o $(EXE4) $(OBJ4) $(LIB4)
+
+$(EXE5): $(OBJ5) $(INC)
+	$(CC) $(NCFLAGS) -o $(EXE5) $(OBJ5) $(LIB5)
 
 #-----------------------------------------------------------------------------
 install: $(ALL_EXES)
@@ -113,6 +127,7 @@ $(OBJ1): $(INC)
 $(OBJ2): $(INC)
 $(OBJ3): $(INC)
 $(OBJ4): $(INC)
+$(OBJ5): $(INC)
 
 .c.o:
 	$(CC) $(NCFLAGS) -c $<
