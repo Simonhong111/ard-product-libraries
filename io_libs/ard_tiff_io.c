@@ -297,7 +297,7 @@ int ard_set_geotiff_tags
     tiepoints[2] = 0.0;
     tiepoints[5] = 0.0;
 
-    if (strcmp (proj_info->grid_origin, "CENTER"))
+    if (!strcmp (proj_info->grid_origin, "CENTER"))
     {  /* projection corners represent center of the pixel */
         tiepoints[3] = proj_info->ul_corner[0];
         tiepoints[4] = proj_info->ul_corner[1];
@@ -949,7 +949,6 @@ int ard_read_tiff
     double *double_ptr = NULL;     /* pointer for double data types */
     double *double_t_ptr = NULL;   /* pointer for double tile data types */
     tdata_t t_buf = NULL;          /* tile data buffer (void ptr from TIFF) */
-uint32_t val;
 
     /* Get the size of the image as well as the size of each tile */
     TIFFGetField(tif, TIFFTAG_IMAGEWIDTH, &img_nsamps);
