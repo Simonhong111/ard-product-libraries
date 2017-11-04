@@ -2585,7 +2585,7 @@ int parse_ard_xml_into_struct
         }
 
         /* Done with the element and its siblings so pop the element name off
-           the stack */
+           the stack and reset static variables */
         if (cur_node->type == XML_ELEMENT_NODE)
         {
             curr_stack_element = pop (top_of_stack, stack);
@@ -2604,13 +2604,19 @@ int parse_ard_xml_into_struct
             if (!strcmp (curr_stack_element, "tile_metadata"))
                 tile_metadata = false;
             if (!strcmp (curr_stack_element, "scene_metadata"))
+            {
+                /* Set the number of scenes based on the number of
+                   scene_metadata that were parsed */
+                ard_meta->nscenes = cur_scene + 1;
+                printf ("DEBUG: Total number of scenes read in XML: %d\n", cur_scene+1);
+
+                /* Reset the scene metadata vars */
                 scene_metadata = false;
+                cur_scene = -1;
+            }
         }
     }  /* for cur_node */
 
-    /* Set the number of scenes based on the number of scene_metadata that
-       were parsed */
-    ard_meta->nscenes = cur_scene + 1;
 
     return (SUCCESS);
 }

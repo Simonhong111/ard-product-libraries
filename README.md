@@ -71,3 +71,9 @@ your application or other ARD product libraries may need to be added.
   * Changed the URL where the ARD schema will officially be located.  This
     location is now https://landsat.usgs.gov/ard/.  The previous http is now
     https.
+  * Fixed a bug in the parse_ard_metadata code which allowed the scene count
+    to grow when multiple ARD tiles were being parsed.  The scene count is
+    now reset once the closing scene_metadata tag is found.
+  * Temporarily bumped up the MAX_TOTOAL_SCENES allowed for the ARD Tiles.
+    This should be a value of 3, however there is a bug in the ARD Tiling code
+    which adds extra tiles to the scene metadata at times.

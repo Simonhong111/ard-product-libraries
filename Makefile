@@ -6,7 +6,8 @@
 .PHONY: all install-headers install-lib install clean
 
 LIBDIRS = common \
-          metadata
+          metadata \
+          io_libs
 EXEDIRS = test
 DIR_SCHEMA = schema
 

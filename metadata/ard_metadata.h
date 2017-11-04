@@ -78,8 +78,11 @@ enum Ard_ephem_type
 #define MAX_TOTAL_PRODUCT_TYPES 50
 
 /* Each tile will have a maximum of 3 scenes covering the tile -- current,
-   previous, and next */
-#define MAX_TOTAL_SCENES 3
+   previous, and next
+   TODO -- reset this to 3 once the Ard Tile bug is fixed.  For now, we will
+   use 5 due to a bug in the ARD Tiling code which allows more than 3 scenes
+   to exist in the tile. */
+#define MAX_TOTAL_SCENES 5
 
 /* Local defines for fill or not used data values in the metadata */
 #define ARD_INT_META_FILL -3333
