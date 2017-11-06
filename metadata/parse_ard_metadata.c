@@ -2608,7 +2608,6 @@ int parse_ard_xml_into_struct
                 /* Set the number of scenes based on the number of
                    scene_metadata that were parsed */
                 ard_meta->nscenes = cur_scene + 1;
-                printf ("DEBUG: Total number of scenes read in XML: %d\n", cur_scene+1);
 
                 /* Reset the scene metadata vars */
                 scene_metadata = false;
