@@ -39,7 +39,7 @@ NOTES:
 int ard_set_geotiff_datum
 (
     GTIF *gtif,        /* I: GeoTiff file pointer */
-    int datum_type,    /* I: datum type (see ARD_* in gctp_defines.h */
+    int datum_type,    /* I: datum type (see ARD_* in gctp_defines.h) */
     char *citation     /* I/O: string for geo citation tag (updated) */
 )
 {
