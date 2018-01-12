@@ -1,5 +1,5 @@
-## ARD-PRODUCT-LIBRARIES Version 1.2.0 Release Notes
-Release Date: November 2017
+## ARD-PRODUCT-LIBRARIES Version 1.3.0 Release Notes
+Release Date: March 2018
 
 The ARD product library project contains libraries and tools for working with the ARD XML metadata. It currently supports Landsat 4-8.
 
@@ -14,7 +14,7 @@ ard-product-library source code
 
     git clone https://github.com/USGS-EROS/ard-product-library.git
 
-See git tag [version_1.2.0]
+See git tag [version_1.3.0]
 
 ### Dependencies
   * XML2 libraries -- ftp://xmlsoft.org/libxml2/
@@ -72,12 +72,16 @@ your application or other ARD product libraries may need to be added.
 
 ### Product Guide 
 ## Release Notes
-  * Changed the URL where the ARD schema will officially be located.  This
-    location is now https://landsat.usgs.gov/ard/.  The previous http is now
-    https.
-  * Fixed a bug in the parse_ard_metadata code which allowed the scene count
-    to grow when multiple ARD tiles were being parsed.  The scene count is
-    now reset once the closing scene_metadata tag is found.
-  * Temporarily bumped up the MAX_TOTOAL_SCENES allowed for the ARD Tiles.
-    This should be a value of 3, however there is a bug in the ARD Tiling code
-    which adds extra tiles to the scene metadata at times.
+  * Changes in this release will help support the Level-3 products such as
+    Burned Area and fractional Snow Covered Area (fSCA), which are based on
+    temporal stacks of data versus a single product from one particular
+    date/time.  These products will only have tile-based metadata and the
+    scene-based metadata will not exist or even apply to the product.
+  * The acquisition date is an optional element, since the Level-3 products
+    often encompass a range of dates versus one single acquisition date.
+  * Added a date range as an optional element in the global metadata.
+  * Added a description element to allow the author to describe the product
+    or point to a URL with more information about the product.
+  * Made instrument, scene_count, cloud_cover, cloud_shadow, snow_ice, and fill
+    optional elements, since they won't be utilized for the Level-3 products
+    based on a temporal stack.

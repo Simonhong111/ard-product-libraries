@@ -1496,6 +1496,28 @@ int add_global_tile_metadata
             return (ERROR);
         }
     }
+    else if (xmlStrEqual (cur_node->name, (const xmlChar *) "date_range"))
+    {
+        /* Handle the element attributes */
+        for (attr = cur_node->properties; attr != NULL; attr = attr->next)
+        {
+            attr_val = xmlGetProp (cur_node, attr->name);
+            if (xmlStrEqual (attr->name, (const xmlChar *) "start"))
+                snprintf (gmeta->start_date, sizeof (gmeta->start_date), "%s",
+                    (const char *) attr_val);
+            else if (xmlStrEqual (attr->name, (const xmlChar *) "end"))
+                snprintf (gmeta->end_date, sizeof (gmeta->end_date), "%s",
+                    (const char *) attr_val);
+            else
+            {
+                sprintf (errmsg, "WARNING: unknown attribute for element "
+                    "(%s): %s\n", cur_node->name, attr->name);
+                ard_error_handler (true, FUNC_NAME, errmsg);
+                return (ERROR);
+            }
+            xmlFree (attr_val);
+        }
+    }
     else if (xmlStrEqual (cur_node->name, (const xmlChar *) "product_id"))
     {
         /* Expect the child node to be a text node containing the value of
@@ -1514,6 +1536,28 @@ int add_global_tile_metadata
         if (count < 0 || count >= sizeof (gmeta->product_id))
         {
             sprintf (errmsg, "Overflow of gmeta->product_id");
+            ard_error_handler (true, FUNC_NAME, errmsg);
+            return (ERROR);
+        }
+    }
+    else if (xmlStrEqual (cur_node->name, (const xmlChar *) "description"))
+    {
+        /* Expect the child node to be a text node containing the value of
+           this field */
+        if (child_node == NULL || child_node->type != XML_TEXT_NODE) 
+        {
+            sprintf (errmsg, "Processing global_metadata element: %s.",
+                cur_node->name);
+            ard_error_handler (true, FUNC_NAME, errmsg);
+            return (ERROR);
+        }
+
+        /* Copy the content of the child node into the value for this field */
+        count = snprintf (gmeta->description, sizeof (gmeta->description), "%s",
+            (const char *) child_node->content);
+        if (count < 0 || count >= sizeof (gmeta->description))
+        {
+            sprintf (errmsg, "Overflow of gmeta->description");
             ard_error_handler (true, FUNC_NAME, errmsg);
             return (ERROR);
         }

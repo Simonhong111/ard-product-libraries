@@ -28,11 +28,11 @@ NOTES:
    but the schema version will contain the major and minor version number
    (i.e. 1.2) */
 #define LIBXML_SCHEMAS_ENABLED
-#define ARD_SCHEMA_VERSION "1.0"
+#define ARD_SCHEMA_VERSION "1.1"
 #define ARD_NS "https://landsat.usgs.gov/ard/v1"
 #define ARD_SCHEMA_LOCATION "https://landsat.usgs.gov/ard/v1"
-#define ARD_SCHEMA "https://landsat.usgs.gov/ard/ard_metadata_v1_0.xsd"
-#define LOCAL_ARD_SCHEMA "/usr/local/ard-product-libraries/schema/ard_metadata_v1_0.xsd"
+#define ARD_SCHEMA "https://landsat.usgs.gov/ard/ard_metadata_v1_1.xsd"
+#define LOCAL_ARD_SCHEMA "/usr/local/ard-product-libraries/schema/ard_metadata_v1_1.xsd"
 
 /* Data types */
 enum Ard_data_type
@@ -145,7 +145,13 @@ typedef struct
     char ard_version[STR_SIZE];   /* ARD version number */
     char region[STR_SIZE];        /* ARD region - CU, HI, AK, etc. */
     char acquisition_date[STR_SIZE]; /* date of scene acquisition (yyyy-mm-dd)*/
-    char product_id[STR_SIZE];       /* product ID */
+    char start_date[STR_SIZE];    /* starting date of temporal products
+                                     (yyyy-mm-dd)*/
+    char end_date[STR_SIZE];      /* ending date of temporal products
+                                     (yyyy-mm-dd)*/
+    char product_id[STR_SIZE];    /* product ID */
+    char description[STR_SIZE];   /* product description or URL providing a
+                                     link to the product description */
     char production_date[STR_SIZE];  /* date the tile was processed */
     double bounding_coords[4];    /* geographic west, east, north, south */
     Ard_proj_meta_t proj_info;    /* projection information structure */

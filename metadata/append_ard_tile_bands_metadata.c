@@ -89,13 +89,40 @@ int append_ard_tile_bands_metadata
     fprintf (fptr,
         "    <global_metadata>\n"
         "        <data_provider>%s</data_provider>\n"
-        "        <satellite>%s</satellite>\n"
-        "        <instrument>%s</instrument>\n"
+        "        <satellite>%s</satellite>\n",
+        tile_gmeta->data_provider, tile_gmeta->satellite);
+
+    if (strcmp (tile_gmeta->instrument, "undefined"))
+        fprintf (fptr,
+            "        <instrument>%s</instrument>\n", tile_gmeta->instrument);
+
+    fprintf (fptr,
         "        <level1_collection>%s</level1_collection>\n"
         "        <ard_version>%s</ard_version>\n"
-        "        <region>%s</region>\n"
-        "        <acquisition_date>%s</acquisition_date>\n"
-        "        <product_id>%s</product_id>\n"
+        "        <region>%s</region>\n",
+        tile_gmeta->level1_collection,
+        tile_gmeta->ard_version, tile_gmeta->region);
+
+    if (strcmp (tile_gmeta->acquisition_date, "undefined"))
+        fprintf (fptr,
+            "        <acquisition_date>%s</acquisition_date>\n",
+            tile_gmeta->acquisition_date);
+
+    if (strcmp (tile_gmeta->start_date, "undefined") &&
+        strcmp (tile_gmeta->end_date, "undefined"))
+        fprintf (fptr,
+            "        <date_range end=\"%s\" start=\"%s\"/>\n",
+            tile_gmeta->end_date, tile_gmeta->start_date);
+
+    fprintf (fptr,
+        "        <product_id>%s</product_id>\n",
+        tile_gmeta->product_id);
+
+    if (strcmp (tile_gmeta->description, "undefined"))
+        fprintf (fptr,
+            "        <description>%s</description>\n", tile_gmeta->description);
+
+    fprintf (fptr,
         "        <production_date>%s</production_date>\n"
         "        <bounding_coordinates>\n"
         "            <west>%lf</west>\n"
@@ -103,10 +130,6 @@ int append_ard_tile_bands_metadata
         "            <north>%lf</north>\n"
         "            <south>%lf</south>\n"
         "        </bounding_coordinates>\n",
-        tile_gmeta->data_provider, tile_gmeta->satellite,
-        tile_gmeta->instrument, tile_gmeta->level1_collection,
-        tile_gmeta->ard_version, tile_gmeta->region,
-        tile_gmeta->acquisition_date, tile_gmeta->product_id,
         tile_gmeta->production_date,
         tile_gmeta->bounding_coords[ARD_WEST],
         tile_gmeta->bounding_coords[ARD_EAST],
@@ -119,15 +142,30 @@ int append_ard_tile_bands_metadata
     /* Continue with the global metadata */
     fprintf (fptr,
         "        <orientation_angle>%f</orientation_angle>\n"
-        "        <tile_grid h=\"%03d\" v=\"%03d\"/>\n"
-        "        <scene_count>%d</scene_count>\n"
-        "        <cloud_cover>%f</cloud_cover>\n"
-        "        <cloud_shadow>%f</cloud_shadow>\n"
-        "        <snow_ice>%f</snow_ice>\n"
-        "        <fill>%f</fill>\n",
-        tile_gmeta->orientation_angle, tile_gmeta->htile, tile_gmeta->vtile,
-        tile_gmeta->scene_count, tile_gmeta->cloud_cover,
-        tile_gmeta->cloud_shadow, tile_gmeta->snow_ice, tile_gmeta->fill);
+        "        <tile_grid h=\"%03d\" v=\"%03d\"/>\n",
+        tile_gmeta->orientation_angle, tile_gmeta->htile, tile_gmeta->vtile);
+
+    if (tile_gmeta->scene_count != ARD_INT_META_FILL)
+        fprintf (fptr,
+            "        <scene_count>%d</scene_count>\n",
+            tile_gmeta->scene_count);
+
+    if (fabs (tile_gmeta->cloud_cover - ARD_FLOAT_META_FILL) > ARD_EPSILON)
+        fprintf (fptr,
+            "        <cloud_cover>%f</cloud_cover>\n", tile_gmeta->cloud_cover);
+
+    if (fabs (tile_gmeta->cloud_shadow - ARD_FLOAT_META_FILL) > ARD_EPSILON)
+        fprintf (fptr,
+            "        <cloud_shadow>%f</cloud_shadow>\n",
+            tile_gmeta->cloud_shadow);
+
+    if (fabs (tile_gmeta->snow_ice - ARD_FLOAT_META_FILL) > ARD_EPSILON)
+        fprintf (fptr,
+            "        <snow_ice>%f</snow_ice>\n", tile_gmeta->snow_ice);
+
+    if (fabs (tile_gmeta->fill - ARD_FLOAT_META_FILL) > ARD_EPSILON)
+        fprintf (fptr,
+            "        <fill>%f</fill>\n", tile_gmeta->fill);
 
     /* End global tile metadata */
     fprintf (fptr,

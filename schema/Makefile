@@ -9,7 +9,8 @@
 TOP = ..
 include $(TOP)/make.config
 
-SCHEMAS = ard_metadata_v1_0.xsd
+SCHEMAS = ard_metadata_v1_0.xsd  \
+          ard_metadata_v1_1.xsd
 
 all:
 
