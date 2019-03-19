@@ -75,7 +75,7 @@ your application or other ARD product libraries may need to be added.
   * Changes were required for the ARD metadata start_date, end_date, and
     descriptions. If they are not set to fill, and they are not specified
     in the metadata itself, then they will be written out as empty strings.
-    Given that these are optional elements in the ARD XML file, then should
+    Given that these are optional elements in the ARD XML file, they should
     not be written if valid values were not specified.  Thus the default
     should be a fill value and therefore the element is not written.
   * Also updated the version number since the version for 1.3.0 was not
