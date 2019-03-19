@@ -14,7 +14,7 @@ NOTES:
 #ifndef ARD_COMMON_H_
 #define ARD_COMMON_H_
 
-#define ARD_COMMON_VERSION "1.2.0"
+#define ARD_COMMON_VERSION "1.3.1"
 
 /* Set up default success/error defines */
 #define SUCCESS 0

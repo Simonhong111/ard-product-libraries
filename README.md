@@ -1,5 +1,5 @@
-## ARD-PRODUCT-LIBRARIES Version 1.3.0 Release Notes
-Release Date: March 2018
+## ARD-PRODUCT-LIBRARIES Version 1.3.1 Release Notes
+Release Date: March 2019
 
 The ARD product library project contains libraries and tools for working with the ARD XML metadata. It currently supports Landsat 4-8.
 
@@ -14,7 +14,7 @@ ard-product-library source code
 
     git clone https://github.com/USGS-EROS/ard-product-library.git
 
-See git tag [version_1.3.0]
+See git tag [version_1.3.1]
 
 ### Dependencies
   * XML2 libraries -- ftp://xmlsoft.org/libxml2/
@@ -72,16 +72,11 @@ your application or other ARD product libraries may need to be added.
 
 ### Product Guide 
 ## Release Notes
-  * Changes in this release will help support the Level-3 products such as
-    Burned Area and fractional Snow Covered Area (fSCA), which are based on
-    temporal stacks of data versus a single product from one particular
-    date/time.  These products will only have tile-based metadata and the
-    scene-based metadata will not exist or even apply to the product.
-  * The acquisition date is an optional element, since the Level-3 products
-    often encompass a range of dates versus one single acquisition date.
-  * Added a date range as an optional element in the global metadata.
-  * Added a description element to allow the author to describe the product
-    or point to a URL with more information about the product.
-  * Made instrument, scene_count, cloud_cover, cloud_shadow, snow_ice, and fill
-    optional elements, since they won't be utilized for the Level-3 products
-    based on a temporal stack.
+  * Changes were required for the ARD metadata start_date, end_date, and
+    descriptions. If they are not set to fill, and they are not specified
+    in the metadata itself, then they will be written out as empty strings.
+    Given that these are optional elements in the ARD XML file, then should
+    not be written if valid values were not specified.  Thus the default
+    should be a fill value and therefore the element is not written.
+  * Also updated the version number since the version for 1.3.0 was not
+    updated correctly and still shows as 1.2.0.

@@ -158,7 +158,10 @@ void init_ard_tile_metadata_struct
     strcpy (tile_gmeta->ard_version, ARD_STRING_META_FILL);
     strcpy (tile_gmeta->region, ARD_STRING_META_FILL);
     strcpy (tile_gmeta->acquisition_date, ARD_STRING_META_FILL);
+    strcpy (tile_gmeta->start_date, ARD_STRING_META_FILL);
+    strcpy (tile_gmeta->end_date, ARD_STRING_META_FILL);
     strcpy (tile_gmeta->product_id, ARD_STRING_META_FILL);
+    strcpy (tile_gmeta->description, ARD_STRING_META_FILL);
     strcpy (tile_gmeta->production_date, ARD_STRING_META_FILL);
     tile_gmeta->bounding_coords[0] = ARD_FLOAT_META_FILL;
     tile_gmeta->bounding_coords[1] = ARD_FLOAT_META_FILL;
